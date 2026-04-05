@@ -1,0 +1,133 @@
+{
+  "name": "ols-ui",
+  "version": "4.3.1",
+  "description": "Standard IRS UI components written in React.",
+  "private": true,
+  "scripts": {
+    "build": "NODE_ENV=production bash support/build-library",
+    "publish-library": "NODE_ENV=production bash support/publish-library",
+    "build-design-guide-assets": "node support/build-design-guide-assets",
+    "test": "./support/test-library",
+    "test-watch": "./support/test-library --watch",
+    "test-coverage": "./support/test-library --coverage",
+    "test-output": "./support/test-library --silent --json --outputFile=../odg-app/data/test-output.json",
+    "lint": "npm run lint-script; npm run lint-style",
+    "lint-script": "eslint src",
+    "lint-style": "stylelint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.irslabs.org:irslabs-prototypes/component-library.git"
+  },
+  "engines": {
+    "node": ">=8.9.3",
+    "npm": "~5.6.0"
+  },
+  "author": "The IRS-UXD Prototyping Team",
+  "contributors": [
+    {
+      "name": "Nathan Mellis",
+      "email": "mellis_nathan@bah.com"
+    },
+    {
+      "name": "Michael Stanaland",
+      "email": "stanaland_michael@bah.com"
+    },
+    {
+      "name": "Virginia Nguyen",
+      "email": "nguyen_virginia@bah.com"
+    },
+    {
+      "name": "Stephanie McFarland",
+      "email": "mcfarland_stephanie@bah.com"
+    },
+    {
+      "name": "Sonja Hall",
+      "email": "hall_sonja@bah.com"
+    },
+    {
+      "name": "Blake Joynes",
+      "email": "joynes_blake@bah.com"
+    }
+  ],
+  "license": "ISC",
+  "files": [
+    "*.js"
+  ],
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
+    "cleave.js": "^1.6.0",
+    "compression": "^1.7.1",
+    "detect-port": "^1.2.2",
+    "express": "^4.16.2",
+    "fbjs": "^3.0.4",
+    "highlight.js": "^9.12.0",
+    "hoist-non-react-statics": "^2.3.1",
+    "immutable": "^3.8.2",
+    "isomorphic-fetch": "^2.1.1",
+    "lodash": "^4.17.0",
+    "moment": "^2.30.1",
+    "prop-types": "^15.6.0",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "react-helmet": "^5.2.1",
+    "react-redux": "^5.1.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-transition-group": "^2.9.0",
+    "redux": "^4.2.1",
+    "redux-logger": "^3.0.0",
+    "redux-thunk": "^2.4.2",
+    "tabbable": "^1.1.3",
+    "zxcvbn": "^4.4.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.6.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-jest": "^23.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^3.5.0",
+    "copy-webpack-plugin": "<6",
+    "css-loader": "<4",
+    "ejs-compiled-loader": "^3.1.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "1.15.6",
+    "eslint": "^4.16.0",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.9.1",
+    "file-loader": "^6.2.0",
+    "flow-typed": "^3.7.0",
+    "glob": "^7.1.2",
+    "identity-obj-proxy": "^3.0.0",
+    "isomorphic-style-loader": "^4.0.0",
+    "jest": "^23.1.0",
+    "jsdom": "^11.3.0",
+    "lodash.clonedeep": "^4.5.0",
+    "postcss-loader": "^2.0.10",
+    "prettier": "^1.14.3",
+    "react-test-renderer": "^16.0.0",
+    "sass": "^1.22.10",
+    "sass-loader": "^7.2.0",
+    "shelljs": "^0.8.1",
+    "sinon": "^5.1.0",
+    "style-loader": "^0.21.0",
+    "stylelint": "^9.2.1",
+    "stylelint-config-idiomatic-order": "^5.0.0",
+    "stylelint-config-standard": "^18.0.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "url-loader": "^4.1.1",
+    "webpack": "<5",
+    "webpack-cli": "^4.9.2",
+    "webpack-node-externals": "^1.6.0"
+  }
+}

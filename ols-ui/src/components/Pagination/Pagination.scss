@@ -1,0 +1,255 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+@mixin PaginationButton {
+  margin-top: 0;
+  margin-right: 0;
+  border-width: 1px;
+  height: auto;
+
+  &:active,
+  &:hover,
+  &:disabled,
+  &:disabled:hover {
+    border-width: 1px;
+  }
+
+  &:hover:not(:disabled):not(.current) {
+    color: $color-blue;
+    border-color: $color-blue;
+  }
+
+  //prevent hover state getting stuck on mobile devices.
+  @media (hover: hover) {
+    &:hover:not(:disabled):not(.current) {
+      background: $color-gray-lighter;
+    }
+  }
+
+  &:focus:before {
+    height: calc(100% + 8px);
+    width: calc(100% + 8px);
+    top: -4px;
+    left: -4px;
+  }
+}
+
+.pagination {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  font-size: 16px;
+  line-height: 24px;
+
+  //extra clearance on bottom for error message
+  margin: $module-spacing 0 32px 0;
+
+  .basic {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .mobile {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .page-jumper {
+      display: inline-block;
+    }
+
+    .page-selector {
+      margin-right: 0;
+      .previous,
+      .next {
+        flex: 1;
+      }
+    }
+
+    .utils {
+      display: flex;
+      flex-direction: row;
+    }
+    .utils > div {
+      flex: 1;
+    }
+
+    .page-size {
+      max-width: none;
+      margin-right: 16px;
+    }
+
+  }
+
+  .page-size {
+    white-space: nowrap;
+    overflow: visible;
+    max-width: 89px;
+    display: inline-block;
+  }
+
+  .page-size {
+    margin-right: 59px;
+    @include media-breakpoint-down(md) {
+      margin-right: 38px;
+    }
+  }
+
+  .page-selector {
+    margin-right: 59px;
+    @include media-breakpoint-down(md) {
+      margin-right: 39px;
+    }
+  }
+}
+
+.page-size {
+
+  [data-component="InputLabel"] {
+    margin: 0 0 8px;
+  }
+
+  [data-component="DropdownSelect"] {
+    width: 89px;
+    margin: 0;
+    padding: 9px 38px 9px 16px;
+    height: auto;
+    line-height: 24px;
+    &:focus {
+      offset: 0;
+    }
+  }
+
+}
+
+.page-selector {
+
+  display: inline-block;
+
+  [data-component="InputLabel"] {
+    margin: 0 0 8px;
+  }
+
+  .page-selector-buttons {
+    display: inline-block;
+  }
+
+  .page-buttons {
+    margin-left: -1px;
+    display: inline-block
+  }
+
+  button[data-component="Button"] {
+    @include PaginationButton();
+    margin-left: -1px;
+    &:first-of-type {
+      margin-left: 0;
+    }
+    &:focus {
+      z-index: 10;
+    }
+  }
+
+  .ellipsis {
+    display: inline-block;
+    text-align: center;
+    width: 44px;
+    vertical-align: bottom;
+    line-height: .65;
+    margin-left: -1px;
+  }
+
+  .page-button {
+    border-radius: 0;
+    width: 44px;
+    padding: 9px 0;
+  }
+  .page-button[aria-current] {
+    background-color: $color-blue-dark;
+    border-color: $color-blue-dark;
+  }
+
+  .previous,
+  .next {
+    padding: 9px 16px 9px;
+    width: auto;
+    height: auto;
+  }
+
+  button.previous {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    svg {
+      transform: scaleX(-1);
+    }
+
+    @include media-breakpoint-down(sm) {
+      margin-right: $module-spacing;
+    }
+  }
+
+  button.next {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+
+  @include media-breakpoint-down(sm) {
+
+    .page-selector-buttons {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .page-buttons {
+      display: none;
+    }
+    margin-bottom: 24px;
+  }
+}
+
+.page-jumper {
+
+  button[data-component="Button"] {
+    @include PaginationButton();
+    padding: 9px 16px;
+    letter-spacing: 0;
+  }
+
+  [data-component="InputLabel"] {
+    margin: 0 0 8px;
+  }
+
+  [data-component="TextField"] {
+    width: 51px;
+    white-space: nowrap;
+  }
+
+  [data-component="TextField"] input {
+    width: 51px;
+    margin: 0;
+    height: auto;
+    line-height: 24px;
+    padding: 9px 0;
+    text-align: center;
+    -webkit-appearance: none;
+  }
+
+  /* Remove the up/down buttons on number input in page jumper */
+  [data-component="TextField"] input::-webkit-outer-spin-button,
+  [data-component="TextField"] input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  [data-component="TextField"] input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+  }
+
+  [data-component="TextField"] [data-component="errorMessage"] {
+    position: absolute;
+    margin-top: 8px;
+  }
+}

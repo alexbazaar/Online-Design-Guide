@@ -1,0 +1,24 @@
+@import '~ols-ui/styles/variables';
+@import '~ols-ui/styles/mixins';
+
+.verified {
+  margin-left: 8px;
+  color: $color-green;
+  line-height: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    .children {
+      opacity: 1;
+    }
+  }
+
+  .children {
+    margin-left: 2px;
+    font-size: 12px;
+    line-height: inherit;
+    opacity: 0;
+  }
+}

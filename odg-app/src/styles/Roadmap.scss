@@ -1,0 +1,219 @@
+@import "~ols-ui/styles/variables";
+@import "~ols-ui/styles/mixins";
+
+
+%table-cell-common {
+  border-right: none !important;
+  border-left: none !important;
+  background: transparent !important;
+}
+
+.naturalTable {
+  max-width: 100%;
+  /* allow for displaying extra large main table */
+  overflow: visible;
+
+  table {
+    display: block;
+    min-width: 100%;
+
+    thead th {
+      @extend %table-cell-common;
+      border-top: none !important;
+      width: 200px;
+      min-width: 200px;
+      max-width: 200px;
+    }
+
+    td, th {
+      @extend %table-cell-common;
+      width: 200px;
+    }
+
+    thead th:first-child {
+      width: 150px;
+      min-width: 240px;
+    }
+
+    thead th:nth-last-child(-n + 2) {
+      width: 110px !important;
+      max-width: 110px !important;
+      min-width: 110px;
+    }
+  }
+}
+
+/* Force slightly extra wide table */
+.main-table {
+  @include media-breakpoint-up(lg) {
+    table {
+      width: 880px;
+      max-width: none !important;
+    }
+  }
+
+}
+
+.tableTitle{
+  margin-bottom: 40px;
+}
+.badge {
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  max-height: 24px;
+}
+
+.badge--todo {
+  border: 1px solid $color-gray-text;
+  color: $color-gray-text;
+}
+
+.badge--not_applicable {
+  background: $color-gray;
+}
+
+.badge--done {
+  background: $color-blue-dark;
+}
+
+.badge--in_progress {
+  background: $color-green;
+}
+
+.badge--up_next {
+  background: $color-blue-vivid;
+}
+
+.badge--paused {
+  background: $color-gray-dark;
+}
+
+.checkIconMobile {
+  text-align: center;
+  svg {
+    width: 18px;
+    height: 13px;
+    color: $color-gold !important;
+  }
+
+  @include media-breakpoint-down(lg) {
+    margin-left: 0;
+    text-align: left;
+  }
+}
+
+.card-container div div {
+  background: $color-gray-lighter !important;
+}
+
+div:not([class*="Accordion"]):not([class*="Card"]) {
+  > h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  [class*="Card"] {
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.colorCheckRoadmap {
+  color: $color-gray-darkest !important;
+}
+
+.hasIcon {
+  font-size: 18.28px !important;
+}
+
+.roadmapHeading {
+  font-family: "Source Sans Pro",sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  margin-top: 12px !important;
+  margin-bottom: 12px !important;
+}
+
+@include media-breakpoint-up(sm) {
+  .roadmapTable[data-component="Table"] [data-component="TableRow"] th:not(:first-of-type) {
+    max-width: 15%;
+    width: 15%;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  [data-component="Table"] {
+    overflow-x: scroll;
+  }
+}
+
+.roadmapTable[data-component="Table"] thead tr th:first-of-type {
+  text-align: left !important;
+}
+
+@include media-breakpoint-down(md) {
+  .roadmapTable[data-component="Table"] [data-component="TableHeaderCell"]:not(:first-of-type) {
+    white-space: normal !important;
+    font-size: 12px !important;
+    line-height: normal !important;
+  }
+
+  [data-component="TableHeaderCell"] span.showHide:nth-of-type(1) {
+    visibility: hidden;
+    display: none;
+  }
+
+  [data-component="TableHeaderCell"] span.showHide:nth-of-type(2) {
+    visibility: visible;
+    display:inline;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  [data-component="TableHeaderCell"] span.showHide:nth-of-type(2) {
+    visibility: hidden;
+    display: none;
+  }
+
+  [data-component="TableHeaderCell"] span.showHide:nth-of-type(1) {
+    visibility: visible;
+    display: inline;
+  }
+}
+
+[data-component="Table"].roadmapTable table tbody tr th {
+  text-align: left;
+}
+
+[data-component="Table"].roadmapTable table tbody tr td {
+  text-align: center;
+}
+
+.roadmapTable[data-component="Table"] [data-component="TableHeaderCell"] {
+  @include media-breakpoint-down(md) {
+    :not(:first-of-type) {
+      max-width: 10px !important;
+      width: 10px !important;
+    }
+  }
+}
+
+.roadmapTable[data-component="Table"] thead tr th {
+  background: $color-white !important;
+  border: 0px !important;
+}
+
+.roadmapTable[data-component="Table"] tbody tr th {
+  border-right: 0px !important;
+  border-left: 0px !important;
+}
+
+.roadmapTable[data-component="Table"] [data-component="TableCell"]:not(:last-of-type),
+.roadmapTable[data-component="Table"] [data-component="TableCell"] {
+  border-right-width: 0px !important;
+  border-left-width: 0px !important;
+}

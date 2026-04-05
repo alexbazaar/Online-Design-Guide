@@ -1,0 +1,20 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.tooltip {
+  @include tiny;
+  position: absolute;
+  z-index: 10;
+  padding: 4px 8px;
+  border-radius: $border-radius;
+
+  background: $color-gray-darkest;
+  color: $color-white;
+
+  pointer-events: none;
+  max-height: $line-height-tiny * 2 + 8px;
+  max-width: 320px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

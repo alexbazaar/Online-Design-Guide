@@ -1,0 +1,88 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+$radio-button-size: 20px;
+
+.radio {
+  position: absolute;
+  margin-left: -20px;
+  opacity: 0;
+  outline: none;
+
+  .lt-ie9 & {
+    position: static;
+    width: auto;
+    border: 0;
+    margin: 0.4em 0.4em 0 0;
+    float: left;
+  }
+}
+
+.radio + label {
+  display: block;
+  margin: baselines(3) 0;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+/* Circle */
+.radio-icon {
+  display: inline-flex;
+  height: $radio-button-size;
+  width: $radio-button-size;
+  border: 1px solid $color-gray-darkest;
+  border-radius: 50%;
+  margin-top: -2px;
+  margin-right: $radio-button-size - 4;
+  vertical-align: middle;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Checked Circle */
+.radio:checked + label .radio-icon {
+  border: 2px solid $color-blue;
+}
+
+.radio:checked + label .radio-icon::before {
+  content: "";
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background-color: $color-blue;
+}
+
+/* Disabled */
+.radio:disabled + label {
+  color: $color-gray-light;
+  cursor: not-allowed;
+}
+
+.radio:disabled + label .radio-icon {
+  border: 1px solid $color-gray-light;
+  cursor: not-allowed;
+}
+.radio:checked:disabled + label .radio-icon {
+  border: 2px solid $color-gray-light;
+  cursor: not-allowed;
+}
+
+.radio:checked:disabled + label .radio-icon:before {
+  background-color: $color-gray-light;
+  cursor: not-allowed;
+}
+
+/* Focus outline */
+.radio:focus + label .radio-icon:after {
+  content: '';
+  display: inline-block;
+  height: $radio-button-size + 8 + 6;
+  width: $radio-button-size + 8 + 6;
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  border: 3px solid $color-blue-vivid;
+}

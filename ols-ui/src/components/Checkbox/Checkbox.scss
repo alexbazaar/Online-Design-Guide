@@ -1,0 +1,76 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+$checkbox-icon-size: 20px;
+
+.checkbox {
+  position: absolute;
+  margin-left: -20px;
+  opacity: 0;
+}
+
+.checkbox + label {
+  margin: baselines(3) 0;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.checkbox + label {
+  line-height: 25px;
+}
+
+.checkbox + label::before {
+  display: inline-block;
+  width: $checkbox-icon-size;
+  height: $checkbox-icon-size;
+  border: solid 1px $color-gray-text;
+  margin-right: $module-spacing;
+  background: $color-white;
+  border-radius: $border-radius;
+  content: "\a0";
+  line-height: 17px;
+  text-indent: 0.15em;
+  vertical-align: middle\0; // Target IE 11 and below to vertically center inputs
+}
+
+.checkbox:disabled + label {
+  color: $color-gray-text;
+  cursor: not-allowed;
+}
+
+.checkbox:disabled + label::before {
+  background: $color-gray-light;
+  border-color: $color-gray-light;
+  cursor: not-allowed;
+}
+
+.checkbox:checked + label::before {
+  background-color: $color-blue;
+  border-color: $color-blue;
+}
+
+.checkbox:checked + label::before,
+.checkbox:checked:disabled + label::before {
+  background-image: url("./check.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+
+// Custom focus outline for Checkbox
+.checkbox:checked + label,
+.checkbox:not(:checked) + label {
+  position: relative;
+}
+
+.checkbox:not(:checked):focus + label::after,
+.checkbox:checked:focus + label::after {
+  box-sizing: border-box;
+  border: 3px solid $color-blue-vivid;
+  content: "";
+  height: 34px;
+  width: 34px;
+  position: absolute;
+  top: -4px;
+  left: -7px;
+  border-radius: 0;
+}

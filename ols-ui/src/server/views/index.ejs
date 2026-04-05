@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html <%- header.htmlAttributes.toString() %>>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- header.title.toString() %>
+    <%- header.base.toString() %>
+    <%- header.meta.toString() %>
+    <%- header.link.toString() %>
+    <%- header.script.toString() %>
+    <%- header.style.toString() %>
+    <% if (manifest.vendor && manifest.vendor.js)  { %>
+    <!-- Vendor script -->
+    <script src="<%= manifest.vendor.js %>"></script>
+    <% } %>
+    <% if (manifest.vendor && manifest.vendor.css)  { %>
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="<%= manifest.vendor.css %>" />
+    <% } %>
+    <% if (manifest.main.css)  { %>
+    <!-- Global IRS styles -->
+    <link rel="stylesheet" href="<%= manifest.main.css %>" />
+    <% } %>
+    <!-- Server-side included styles -->
+    <style><%- styles %></style>
+    <!-- Dynamically added styles -->
+  </head>
+  <body>
+    <div id="root"><%- content %></div>
+
+    <script type="text/javascript" charset="utf-8">
+      window.__PRELOADED_STATE__ = '<%= reduxState %>';
+    </script>
+    <script src="<%= manifest.main.js %>"></script>
+  </body>
+</html>

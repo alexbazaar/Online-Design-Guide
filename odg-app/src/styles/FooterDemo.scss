@@ -1,0 +1,58 @@
+@import "~ols-ui/styles/variables";
+
+[data-demo="big-footer"],
+[data-demo="slim-footer"] {
+
+  header,
+  nav,
+  footer {
+    display: none;
+    visibility: hidden;
+  }
+
+  ul {
+    max-width: none;
+  }
+
+  [data-component="Link"] {
+    color: inherit !important;
+    text-decoration: inherit !important;
+
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
+
+  [data-component="Panel"] {
+    border: none;
+  }
+
+}
+
+.footerTest {
+  display: inherit !important;
+  visibility: inherit !important;
+  background-color: #f3f3f3;
+  border-top: 5px solid #1b1b1b;
+
+  a:visited path,
+  a:hover path ,
+  a:visited path {
+    fill: $color-gray-darkest;
+  }
+
+  [data-component="footerLogo"] path,
+  [data-component="footerLogo"]:hover path,
+  [data-component="footerLogo"]:active path,
+  [data-component="footerLogo"]:visited path {
+    color: $color-white;
+    fill: $color-white;
+  }
+
+}
+
+.slimFooterTest {
+  display: inherit !important;
+  visibility: inherit !important;
+  background-color: #f3f3f3;
+}

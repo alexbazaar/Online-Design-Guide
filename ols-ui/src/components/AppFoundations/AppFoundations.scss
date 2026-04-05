@@ -1,0 +1,18 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.appWrapper {
+  height: 100%;
+}
+
+.page {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1 0 auto;
+  margin-top: $module-spacing;
+  outline: none;
+}

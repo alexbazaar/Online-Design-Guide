@@ -1,0 +1,15 @@
+@import "~ols-ui/styles/variables";
+@import "~ols-ui/styles/mixins";
+
+@import "./App";
+
+
+  .mainContentMargin{
+    margin-top: 0;
+    > [data-component="FlexContainer"]{
+      @include media-breakpoint-up(md){
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+    }
+  }

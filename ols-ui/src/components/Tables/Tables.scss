@@ -1,0 +1,221 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+$border-size: 1px;
+$iconSize: 14px;
+$iconMarginLeft: 4px;
+
+.sr-only {
+  @include sr-only;
+}
+
+.responsive-table {
+  @include media-breakpoint-down(lg) {
+    .regular-table {
+      display: none;
+    }
+
+    .mobile-table {
+      display: block;
+    }
+  }
+}
+
+// The main table for desktop/tablet.
+.regular-table {
+  min-width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  thead {
+    th,
+    td {
+      font-size: $font-size-base !important; //Overrides table header font size from Docs.scss
+      line-height: baselines(6) !important;  //Overrides table header font size from Docs.scss
+      font-weight: $font-bold;
+      vertical-align: bottom;
+      white-space: nowrap;
+    }
+  }
+
+  th {
+    text-align: left;
+  }
+
+  tbody {
+    th {
+      font-weight: $font-normal;
+    }
+
+    td,
+    th {
+      vertical-align: top;
+      font-size: $font-size-base;
+      line-height: baselines(6);
+    }
+  }
+
+  th,
+  td {
+    padding: $module-spacing/2 $module-spacing;
+    border-bottom-width: $border-size;
+    border-color: $color-gray;
+    border-style: solid;
+  }
+}
+
+// The "table" for phone and other limited-width screens.
+.mobile-table {
+  display: none;
+
+  [role="row"] {
+    padding-bottom: baselines(6);
+    font-size: $font-size-base;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  [role="rowheader"],
+  [role="gridcell"] {
+    position: relative;
+    padding-right: 0;
+    padding-left: 0;
+    border-bottom-width: 1px;
+    border-color: $color-gray;
+    border-style: solid;
+
+    &:last-of-type {
+      border-bottom: 0;
+    }
+  }
+
+  [role="rowheader"] {
+    font-weight: $font-bold;
+  }
+
+  [role="gridcell"] {
+    padding: 0.6em 0;
+
+    [aria-hidden="true"] {
+      padding-bottom: em(2px);
+      color: #000000;
+      //font-size: $font-size-tiny;
+      //letter-spacing: em(0.5px);
+      //text-transform: uppercase;
+    }
+
+    div + div {
+      font-weight: 700;
+    }
+
+    svg.fa-check {
+      color: $color-gold;
+    }
+  }
+}
+
+.regular-table.bordered {
+  thead {
+    th {
+      background-color: $color-gray-lighter;
+      border-top-width: $border-size;
+    }
+  }
+
+  tbody {
+    tr:first-of-type {
+      th,
+      td {
+        border-top-width: 0;
+      }
+    }
+  }
+
+  th,
+  td {
+    border-left-width: $border-size;
+    border-right-width: $border-size;
+    border-top-width: $border-size;
+  }
+}
+
+.mobile-table.bordered {
+  &[role="grid"] {
+    border: 1px solid $color-gray;
+  }
+
+  [role="rowheader"],
+  [role="gridcell"] {
+    padding: 4px 8px;
+  }
+
+  [role="row"] {
+    padding-bottom: 0;
+    border-top: 1px solid $color-gray;
+  }
+
+  // First row is hidden so don't render a top border.
+  // Second row is the first visible row so don't render a top border.
+  [role="row"]:first-of-type,
+  [role="row"]:first-of-type + [role="row"] {
+    border-top: 0;
+  }
+}
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+
+  .inner {
+    display: inline-block;
+  }
+
+  .sortIcon {
+    position: relative;
+    display: inline-block;
+    width: $iconSize;
+    height: $iconSize;
+    margin-left: 0.25em;
+  }
+
+  .ascSortIcon {
+    top: 2px;
+  }
+
+  .descSortIcon {
+    bottom: 0;
+  }
+
+  .sortDirection::after {
+    display: inline-block;
+    width: em($iconSize);
+    height: em($iconSize);
+    margin-left: 0.25em;
+    content: "";
+  }
+}
+
+.column-header-clicked {
+  color: red;
+}
+
+.column-header-selected {
+  color: green;
+}
+
+.search-container {
+  // stylelint-disable-line block-no-empty
+}
+
+.search-container ~ .regular-table,
+.search-container ~ .responsive-table .regular-table,
+.search-container ~ .responsive-table .mobile-table {
+  margin-top: 12px;
+}
+
+.status {
+  // stylelint-disable-line block-no-empty
+}

@@ -1,0 +1,461 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+
+$step-indicator-border-width: 2px;
+$step-indicator-completed-border-width: $step-indicator-border-width + 1;
+$step-indicator-knot-size: 48px;
+$step-indicator-knot-size-sm: $module-spacing * 2;
+$step-indicator-top-offset: $module-spacing / 2;
+$space-between-step-indicator-items-sm: ($module-spacing);
+$space-between-step-indicator-items: ($module-spacing * 4);
+$step-content-height: $step-indicator-knot-size / 2;
+$step-content-height-sm: $step-indicator-knot-size-sm / 2;
+
+.sr-only {
+  @include sr-only;
+}
+
+.step-indicator-wrapper {
+  text-align: left;
+
+  @include media-breakpoint-up(sm) {
+    text-align: center;
+  }
+}
+
+.step-indicator-wrapper {
+  ul {
+    padding-left: 0;
+  }
+  ul li {
+    list-style: none;
+  }
+}
+
+.step-indicator-title {
+  @include heading2;
+
+  @include media-breakpoint-up(sm){
+    display: none;
+  }
+
+  @include media-breakpoint-down(xs) {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.item {
+  display: inline-flex;
+  align-items: stretch;
+  padding: $module-spacing / 4;
+  position: relative;
+
+  @include media-breakpoint-up(sm) {
+    padding: $module-spacing;
+    &.hasLabel {
+      padding: $module-spacing ($module-spacing * 2.5) ($module-spacing * 2);
+    }
+  }
+
+  
+  &:last-of-type {
+
+    .line {
+      display: none;
+    }
+  }
+
+  // Styles the Completed state knot colors of on a non-functional step indicator
+  &.completed .knot {
+    box-shadow: inset 0 0 0 $step-indicator-completed-border-width $color-gray-dark;
+    background: $color-white;
+  }
+
+  // Styles the Active state knot colors of on a non-functional step indicator
+  &.active .knot {
+    background: $color-gray-dark;
+    box-shadow: none;
+    color: $color-white;
+  }
+
+  // Styles the Active state knot colors of on a functional step indicator
+ 
+
+  &.active .step-label {
+    color: $color-white;
+  }
+
+  &.disabled .knot,
+  &.disabled.item-link [data-component="Link"] .knot {
+    background: $color-white;
+    box-shadow: inset 0 0 0 $step-indicator-completed-border-width $color-gray-dark;
+  }
+
+  &.disabled .step-label {
+    color: $color-gray-dark;
+  }
+}
+
+
+.functionalItem {
+  display: inline-flex;
+  align-items: stretch;
+  padding: $module-spacing / 4;
+  position: relative;
+  &.knot,
+  &.completedKnot {
+    background: $color-blue-dark;
+  }
+  @include media-breakpoint-up(sm) {
+    padding: $module-spacing;
+    &.hasLabel {
+      padding: $module-spacing ($module-spacing * 2.5) ($module-spacing * 2);
+    }
+  }
+
+  
+  &:last-of-type {
+
+    .line {
+      display: none;
+    }
+  }
+
+  // Styles the focus outline for "completed/not completed" functional steps
+  &.item-link [data-component="Link"]:focus {
+    outline: 3px solid $color-blue-vivid;
+    position: relative;
+    display: block;
+    z-index: 1;
+    padding: 10px 20px 55px 20px;
+    margin: -10px -20px -55px -20px;
+  }
+  // Styles the focus outline for "active" functional step
+  &.item-link [data-component="activeLink"]:focus {
+    outline: 3px solid $color-blue-vivid;
+    position: relative;
+    display: block;
+    z-index: 1;
+    padding: 10px 20px 55px 20px;
+    margin: -10px -20px -55px -20px;
+  }
+  // Styles the completed and not completed step knots
+  &.item-link [data-component="Link"] .knot,
+  &.item-link [data-component="Link"] .completedKnot {
+    background: $color-blue;
+    color: $color-white;
+    box-shadow: none;
+    transition: background-color 0.5s ease;
+  }
+
+  // Styles the hover of completed and not completed step knots
+  &.item-link [data-component="Link"]:hover .knot,
+  &.item-link [data-component="Link"]:hover .completedKnot {
+    background: $color-blue-dark;
+  }
+
+
+  // Styles the Active state knot colors of on a non-functional step indicator
+  &.active .knot {
+    background: $color-blue-dark;
+    box-shadow: none;
+    color: $color-white;
+  }
+
+  // Styles the step numbers for active and not completed steps
+  &.active .step-label,
+  &.item-link .step-label {
+    color: $color-white;
+  }
+}
+
+.item-link {
+  .content {
+    color: $color-blue;
+    text-decoration: underline;
+    width: ($module-spacing * 7);
+    cursor: pointer;
+  }
+
+  .content[id="activeLabel"],
+  .content[id="activeLabel"]:hover {
+    color: $color-gray-text;
+  }
+
+  &:hover {
+    cursor: pointer;
+    .knot,
+    .completedKnot {
+      background:$color-blue-dark;
+    }
+  }
+
+  &:visited {
+    .content {
+      color: $color-visited;
+    }
+  }
+}
+ 
+// The default, non-functional step label underneath the Step Indicator knots
+//
+.content {
+  @include body;
+  max-width: $step-indicator-knot-size-sm;
+
+  @include media-breakpoint-down(xs) {
+    @include sr-only;
+  }
+
+  // Sets position of labels (not links) for non-functional step indicator
+  .item & {
+    @include media-breakpoint-up(sm) {
+      color: $color-gray-text;
+      font-size: $module-spacing - 2;
+      overflow-y: visible;
+      max-width: ($module-spacing * 7);
+      text-align: center;
+      line-height: 20px;
+      position: absolute;
+      top: 60px;
+      width: ($module-spacing * 7);
+      left: (-($module-spacing * 2));
+    }
+  }
+  .functionalItem & {
+    @include media-breakpoint-up(sm) {
+      color: $color-blue;
+      font-size: $module-spacing - 2;
+      overflow-y: visible;
+      max-width: ($module-spacing * 7);
+      text-align: center;
+      line-height: 20px;
+      position: absolute;
+      top: 60px;
+      width: ($module-spacing * 7);
+      left: (-($module-spacing * 2));
+    }
+  }
+
+  .active & {
+    font-weight: 700;
+    text-decoration: none;
+    color: $color-gray-dark;
+  }
+
+  .item:first-of-type & {
+    @include media-breakpoint-up(sm) {
+      left: (-($module-spacing * 2));
+    }
+  }
+
+  .item:last-of-type & {
+    @include media-breakpoint-up(sm) {
+      left: (-($module-spacing * 2));
+    }
+  }
+
+  .functionalItem:first-of-type & {
+    @include media-breakpoint-up(sm) {
+      left: (-($module-spacing * 2));
+    }
+  }
+
+  .functionalItem:last-of-type & {
+    @include media-breakpoint-up(sm) {
+      left: (-($module-spacing * 2));
+    }
+  }
+
+  .item-link & {
+    &:hover{
+      color: $color-blue-dark;
+    }
+    @include media-breakpoint-up(sm) {
+      color: $color-blue;
+      font-size: $module-spacing - 2;
+      overflow-y: visible;
+      max-width: ($module-spacing * 7);
+      text-align: center;
+      line-height: 20px;
+      position: absolute;
+      top: 60px;
+      width: ($module-spacing * 7);
+      left: (-($module-spacing * 2));
+    }
+  }
+}
+
+.knotLine {
+  position: relative;
+  flex: 0 0 auto;
+
+  .line {
+    position: absolute;
+    z-index: 0;
+    top: ($step-indicator-knot-size-sm / 2);
+    left: ($step-indicator-knot-size / 2) - ($step-indicator-border-width / 2);
+    width: calc(100% + #{$space-between-step-indicator-items-sm});
+    height: $step-indicator-border-width - 1;
+    background-color: $color-gray-dark;
+
+    .item-link & {
+      background-color: $color-gray-dark;
+    }
+
+    .completed & {
+      background-color: $color-gray-dark;
+    }
+
+    @include media-breakpoint-up(sm) {
+      top: ($step-indicator-knot-size / 2);
+      width: calc(100% + #{$space-between-step-indicator-items});
+    }
+  }
+
+  .knot {
+    background: $color-white;
+    box-shadow: inset 0 0 0 $step-indicator-completed-border-width $color-gray-dark;
+    position: relative;
+    z-index: 1;
+    top: 0;
+    width: $step-indicator-knot-size-sm;
+    height: $step-indicator-knot-size-sm;
+    border-radius: 50%;
+
+    [data-component="icon-wrapper"] {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    [data-icon="check"] {
+      width: 13px;
+      height: 10px;
+    }
+
+    @include media-breakpoint-up(sm) {
+      width: $step-indicator-knot-size;
+      height: $step-indicator-knot-size;
+
+      [data-icon="check"] {
+        height: 15px;
+        width: 20px;
+      }
+    }
+  }
+}
+
+//
+// Step number (inside of the knot)
+//
+@mixin step-base {
+  color: $color-gray-dark;
+  text-align: center;
+  font-size: $module-spacing - 2;
+  position: absolute;
+  height: $step-content-height;
+  overflow: hidden;
+  max-width: $step-content-height-sm;
+  bottom: ($step-content-height-sm) / 4;
+  width: 100%;
+  text-align: center;
+  left: $module-spacing / 2;
+
+  @include media-breakpoint-up(sm) {
+    max-width: $step-content-height;
+    bottom: ($step-content-height - $step-indicator-border-width) / 2;
+    font-size: $module-spacing + 2;
+    left: $module-spacing - ($step-indicator-border-width * 2);
+  }
+
+  > * {
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.step-label {
+  @include step-base;
+}
+
+// Styles the functional and non-functional check icons
+//
+.completed-step-label,
+.static-completed-step-label {
+  @include step-base;
+
+  @include media-breakpoint-up(sm) {
+    font-size: $module-spacing * 1.5;
+    bottom: 12px;
+  }
+}
+
+.completed-step-label {
+  color: $color-white;
+}
+
+// Non-functional: Completed step checkmark (inside of the knot)
+//
+.completedDisabledIcon {
+  @include body;
+  color: $color-gray-text;
+  background: $color-white;
+  text-align: center;
+  font-size: $module-spacing - 2;
+  position: absolute;
+  bottom: ($step-content-height) / 4;
+  left: $module-spacing / 2;
+  overflow: hidden;
+  height: $step-content-height - 4;
+  max-width: $step-content-height-sm;
+  width: 100%;
+
+  @include media-breakpoint-up(sm) {
+    max-width: $step-content-height;
+    height: $step-content-height;
+    bottom: ($step-content-height - $step-indicator-border-width) / 2;
+    font-size: $module-spacing + 2;
+    left: $module-spacing - ($step-indicator-border-width * 2);
+  }
+
+  > * {
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.completedClickableIcon {
+  @include body;
+  color: $color-white;
+  background: transparent;
+  text-align: center;
+  font-size: $module-spacing - 2;
+  position: absolute;
+  left: 0;
+  bottom: ($step-content-height-sm) / 8;
+  overflow: hidden;
+  height: $step-content-height - 4;
+  max-width: $step-content-height-sm;
+  width: 100%;
+
+  @include media-breakpoint-up(sm) {
+    max-width: $step-content-height;
+    height: $step-content-height;
+    bottom: 0;
+    font-size: $module-spacing + 2;
+    left: 0;
+  }
+
+  > * {
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

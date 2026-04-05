@@ -1,0 +1,325 @@
+@import "~ols-ui/styles/variables";
+@import "~ols-ui/styles/mixins";
+
+.ul {
+  @include ul;
+}
+
+.ol {
+  @include ol;
+}
+
+.swirlBackground {
+  padding: $module-spacing;
+
+  // This is a DEPRECATED style from the Component Library Sidebar
+  //
+  // background: url("../../node_modules/ols-ui/assets/images/irs-swirl.png") repeat;
+}
+
+.bannerRow {
+  font-weight: $font-bold;
+}
+
+// Adjusts style of Outlined and Filled Buttons on IE to display properly in Preview tab.
+// TO DO:  This should be removed once the Preview tabs are re-designed.
+[data-component="ButtonPreviewTab"] button[data-component="Button"] {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+    font-size: $font-size-base;
+    letter-spacing: 0.03em;
+  }
+}
+
+[data-component="ButtonPreviewTab"] > div {
+  @media (max-width: 752px) {
+    margin-right: 0;
+  }
+}
+
+.colButtonRows div {
+  @media (max-width: 1199px) {
+    padding-right: 0;
+    min-width: 50%;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 572px) {
+    min-width: 100%;
+  }
+
+  @media (max-width: 752px) {
+    min-width: 100%;
+  }
+}
+
+.colButtonRows div {
+  &:nth-last-of-type(-n + 2) {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 572px) {
+    &:nth-last-of-type(-n + 2) {
+      margin-bottom: 25px;
+    }
+
+    &:nth-last-of-type(-n + 1) {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 752px) {
+    &:nth-last-of-type(-n + 2) {
+      margin-bottom: 25px;
+    }
+
+    &:nth-last-of-type(-n + 1) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.colButtonRows button {
+  display: block;
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    display: block;
+  }
+}
+
+// ButtonsPage: Outlined button on Safari (Large screen) wraps to second line -- overrode styling
+.safariButtonSpacing {
+  @media (min-width: 1200px) {
+    margin-right: -2px !important;
+  }
+}
+
+.blockButtonsContainer {
+  width: 426px;
+  flex-basis: unset;
+  flex-grow: unset;
+}
+
+.blockButtonsContainer button {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    width: 426px !important;
+  }
+
+  @media (max-width: 996px) {
+    width: 100% !important;
+  }
+}
+
+.colButtonRows {
+  position: relative !important;
+
+  @media (max-width: 1199px) {
+    display: inline-block;
+  }
+}
+
+.colButtonRows > div {
+  width: 50% !important;
+  display: inline-block !important;
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    padding-right: 0px !important;
+    padding-left: 1px !important;
+  }
+
+  padding-right: 6px !important;
+  padding-left: 6px !important;
+
+  @media (max-width: 996px) {
+    width: 50% !important;
+    display: inline-block !important;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+  margin: 25px auto;
+  max-width: 900px;
+}
+
+.stepper {
+  height: 24px;
+  // border: 1px solid red;
+  height: 100%;
+}
+
+.stepper-indicator {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  // border-bottom: 3px solid $md-blue-500;
+}
+
+.stepper-inner {
+  width: 15em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.stepper-number {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+  border: 2px solid grey;
+  background-color: white;
+  color: grey;
+
+  span:after {
+    width: 999em;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    background-color: #e8e8e8;
+    content: "";
+  }
+
+  span:first-child {
+    &:after {
+      left: 50%;
+    }
+  }
+
+  span:last-child {
+    &:after {
+      right: 50%;
+      left: auto;
+    }
+  }
+
+  &.active {
+    border: 2px solid blue;
+    color: white;
+    background-color: blue;
+  }
+}
+
+.stepper-label {
+  // position: absolute;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  height: 24px;
+  text-align: center;
+  // border: 1px solid red;
+  text-transform: uppercase;
+  font-size: 12px;
+  width: 100%;
+}
+
+.stepper-steps {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+}
+
+.stepper-actions {
+  // position: absolute;
+  // bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.stepper-test-button {
+  height: 44px;
+  border-radius: 4px;
+  background-color: blue;
+  border: 0;
+  transition: all 0.2s linear;
+  min-width: 100px;
+  text-align: center;
+  // text-transform: uppercase;
+  color: white;
+  cursor: pointer;
+  outline: 0;
+  padding: 10px;
+}
+
+.line {
+  top: 100px;
+  width: 75%;
+  background-color: #d5d5d5;
+  height: 2px;
+  position: absolute;
+  left: 12%;
+}
+
+.StepIndicatorBtnPrev {
+  display: inline-block;
+  padding-right: 14px;
+  padding-left: 14px;
+  width: auto;
+  box-sizing: border-box;
+  padding: 8px 12px 8px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: Source Sans Pro, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #0073af;
+  border: 2px solid #0073af;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 16px;
+  margin-top: 16px;
+  @extend .stepper-test-button;
+}
+
+.StepIndicatorBtnNext {
+  display: inline-block;
+  padding-right: 14px;
+  padding-left: 14px;
+  width: auto;
+  box-sizing: border-box;
+  padding: 8px 12px 8px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: Source Sans Pro, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #ffffff;
+  border: 2px solid #0073af;
+  color: #0073af;
+  text-decoration: none;
+  margin-right: 16px;
+  margin-top: 16px;
+  @extend .stepper-test-button;
+}
+
+.StepIndicatorBtnPrev:focus {
+  background: #002346;
+  box-sizing: border-box;
+}
+
+/* Remove outline for non-keyboard :focus */
+.StepIndicatorBtnNext:focus,
+.StepIndicatorBtnPrev:focus {
+  outline: #0073af solid 2px;
+  box-shadow: 0 0 3px #ddd;
+}

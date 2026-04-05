@@ -1,0 +1,12 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.draft {
+  display: inline-flex;
+  font-weight: 700;
+  color: $color-white;
+  margin-left: baselines(4);
+  padding: 8px 20px;
+  border: 4px solid $color-white;
+  background-color: $color-red;
+}

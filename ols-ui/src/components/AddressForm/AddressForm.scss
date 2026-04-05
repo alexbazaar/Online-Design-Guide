@@ -1,0 +1,12 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+@import "../FieldSet/FieldSet";
+
+.addressForm {
+  max-width: $input-max-width;
+
+  legend {
+    @include heading1;
+    margin-bottom: baselines(4);
+  }
+}

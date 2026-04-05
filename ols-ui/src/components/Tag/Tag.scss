@@ -1,0 +1,118 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.emphasisTag {
+  @include button;
+  background: $color-gold;
+  cursor: auto !important;
+  border: 0;
+  display: inline-block;
+  padding: 1px 8px 0px 8px;
+  margin-right: 12px;
+  font-size: 12px;
+  height: 20px;
+  margin-left: 16px;
+  margin-top: 10px;
+  letter-spacing: normal !important;
+  
+  @include media-breakpoint-up(md) {
+    margin-top: 20px;
+  }
+
+  span {
+    vertical-align: baseline;
+    margin-right: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+}
+
+.classificationTag {
+  @include button;
+  background-color: #ffffff;
+  border: 1px solid $color-blue;
+  color: $color-blue;
+  text-decoration: none;
+  cursor: pointer !important;
+  line-height: 16px;
+  margin-left: 0px !important;
+  letter-spacing: normal;
+  padding: 1px 8px;
+  margin-right: 12px;
+  margin-top: 10px;
+  font-size: 12px;
+
+  span {
+    vertical-align: baseline;
+    margin-right: 0;
+    font-size: 12px;
+    text-transform: none;
+  }
+
+  &.focus,
+  &:focus {
+    color: $color-blue;
+    border-color: $color-blue;
+  }
+
+  &.focus-visible,
+  &:focus-visible {
+    color: $color-blue;
+    border-color: $color-blue;
+  }
+
+  &.focus:hover,
+  &:focus:hover {
+    color: $color-blue-dark;
+    border-color: $color-blue-dark;
+  }
+
+  &.focus:active,
+  &:focus:active {
+    color: $color-blue-darkest;
+    border-color: $color-blue-darkest;
+  }
+  
+  &.visited,
+  &:visited {
+    color: $color-blue;
+    border-color: $color-blue;
+  }
+
+  &.hover,
+  &:hover {
+    color: $color-blue-dark;
+    border-color: $color-blue-dark;
+  }
+
+  &.active,
+  &:active {
+    color: $color-blue-darkest;
+    border-color: $color-blue-darkest;
+  }
+}
+
+// Custom focus outline for Tags
+.classificationTag {
+  position: relative;
+  &:focus:not(.focus-visible) {
+    outline: none;
+  }
+}
+
+.classificationTag:focus:not(.focus-visible):before {
+  box-sizing: border-box;
+  border: 3px solid $color-blue-vivid;
+  content: "";
+  display: block;
+  height: calc(100% + 18px);
+  width: calc(100% + 18px);
+  position: absolute;
+  top: -9px;
+  left: -9px;
+}
+
+.sr-only {
+  @include sr-only;
+  display: inline-block;
+}

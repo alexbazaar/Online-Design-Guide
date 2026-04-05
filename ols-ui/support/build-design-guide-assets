@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+
+/* eslint-disable no-console */
+
+const path = require("path");
+const shell = require("shelljs");
+const fs = require("fs");
+const glob = require("glob");
+const buildWebpackCompiler = require("./build-tools/webpack-compiler");
+const componentToString = require("./build-tools/componentToString");
+
+const environment = process.env.NODE_ENV || "production";
+const ROOT_DIR = path.resolve(__dirname + "/..");
+const BUILD_PATH = path.join(ROOT_DIR, "design-guide-assets");
+const SRC_PATH = path.join(ROOT_DIR, "src");
+
+console.log(`Building design guide assets...`);
+
+// Clean the build directory.
+if (shell.rm('-rf', BUILD_PATH).code === 0) {
+  shell.mkdir(BUILD_PATH);
+  console.log(`Cleaned ${path.relative(ROOT_DIR, BUILD_PATH)}.`);
+}
+
+const finish = () => {
+  const files = glob.sync(path.join(BUILD_PATH, "*.js"), null);
+  files.forEach((file) => {
+    const name = path.basename(file, ".js");
+    const example = require(file);
+    fs.writeFileSync(path.join(BUILD_PATH, `${name}.html`), componentToString(example));
+    fs.unlinkSync(file);
+  });
+
+  console.log('Done building');
+};
+
+const config = {
+  ROOT_DIR,
+  BUILD_PATH,
+  SRC_PATH
+};
+
+// Compile the client.
+const buildConfig = require("../config/design-guide-assets.webpack.config");
+const designGuideAssetsConfig = buildConfig(config, environment);
+
+const compiler = buildWebpackCompiler(designGuideAssetsConfig, (compiler) => {
+  if (compiler.hasErrors()) {
+    process.exit(1);
+  }
+  // console.log("Assets");
+  // printAssets(compiler, clientConfig);
+  finish();
+});
+compiler.run(() => undefined);

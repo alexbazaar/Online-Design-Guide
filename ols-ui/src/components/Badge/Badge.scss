@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+
+@mixin badge-base {
+  position: relative;
+  top: -0.3em;
+  display: inline-block;
+  background-color: $color-yellow;
+  border-radius: $border-radius;
+  color: $color-gray-darkest;
+  font-family: $font-sans;
+  font-weight: $font-normal;
+  text-align: center;
+  vertical-align: baseline;
+}
+
+.badge {
+  @include badge-base;
+  min-width: 20px;
+  padding: 0 6px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.badgeBig {
+  @include badge-base;
+  min-width: 28px;
+  padding: 0 8px;
+  font-size: 18px;
+  line-height: 28px;
+}

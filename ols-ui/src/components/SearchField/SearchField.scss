@@ -1,0 +1,168 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+$btn-small-width:   50px;
+$btn-medium-width:  130px;
+$btn-big-width:     $btn-medium-width;
+
+$input-height:      44px;
+
+$search-font-size:  $font-size-base + 4px;
+$search-line-height: baselines(4);
+
+@mixin search-icon {
+  background-image: url("./search.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+
+.srOnly {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.search {
+  @include clearfix;
+  position: relative;
+  max-width: none;
+
+  [role="search"] & {
+    display: flex;
+  }
+
+  .input {
+    @include input-text;
+    border-color: $color-gray-darkest;
+    box-sizing: border-box;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-right: none;
+    margin: 0;
+    appearance: none;
+    border-radius: 0;
+    float: left;
+  }
+
+  .submit {
+    @include button;
+    @include search-icon;
+    width: $btn-small-width + 4px;
+    height: $input-height;
+    padding: baselines(3) baselines(4);
+    margin: 0;
+    background-color: $color-blue;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    color: $color-white;
+
+    @include media-breakpoint-up(sm) {
+      width: auto;
+      padding: baselines(3) baselines(4);
+      background-image: none;
+      font-size: $search-font-size;
+      line-height: $search-line-height;
+    }
+  }
+
+  .submitText {
+    display: none;
+    padding: 0;
+    text-transform: none;
+
+    @include media-breakpoint-up(sm) {
+      display: block;
+    }
+  }
+
+  &.small {
+    [type="submit"] {
+      background-image: none;
+    }
+
+    @include media-breakpoint-up(sm) {
+      $width: $btn-small-width;
+
+      [type="submit"] {
+        width: $width;
+      }
+    }
+  }
+
+  .searchBox,.closeIcon {
+    position: relative;
+    padding: 10px;
+  }
+
+  .closeIcon {
+    border: 0;
+    background-color: transparent;
+    display: inline-block;
+    vertical-align: middle;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+
+    &:after {
+      content: url("./search-close.svg");
+      display: block;
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      z-index:1;
+      right: 15px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      padding: 0;
+      cursor: pointer;
+    }
+  }
+
+  .searchBox:not(:valid) ~ .closeIcon {
+    display: none;
+  }
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+  }
+}
+
+// Custom focus outline for Search Field
+.search .input:focus {
+  box-shadow: 0px 0px 0px 3px $color-blue-vivid;
+  border-radius: 0;
+  outline: none;
+  z-index: 1;
+}
+
+.submit {
+  position: relative;
+
+  &:focus:not(.focus-visible) {
+    outline: none;
+  }
+}
+
+.search *:focus:not(.focus-visible) {
+  outline: none;
+}
+
+.search .submit:focus:not(.focus-visible):before {
+  box-sizing: border-box;
+  border: 3px solid $color-blue-vivid;
+  content: "";
+  display: block;
+  height: calc(100% + 16px);
+  width: calc(100% + 16px);
+  position: absolute;
+  top: -8px;
+  left: -8px;
+}

@@ -1,0 +1,69 @@
+@import "~ols-ui/styles/variables";
+@import "~ols-ui/styles/mixins";
+
+// NOTE: All !important tags are to override previous styling
+
+.buttonSpacing {
+  margin-top: -24px;
+  margin-bottom: -8px;
+}
+
+.iconBlock {
+  font-size: 24px;
+  text-align: center;
+}
+
+.icon-grid {
+  line-height: 0;
+  margin-top: 24px;
+}
+
+.grid-icon {
+  width: 139px;
+  height: 136px;
+  display: inline-block;
+  margin-top: -1px;
+  margin-left: -1px;
+  vertical-align: middle;
+
+  [data-component="Card"] {
+    width: 139px;
+    height: 136px;
+    overflow-y: hidden;
+    margin-bottom: 0;
+
+    &:hover {
+      background-color: $color-gray-lighter;
+    }
+
+    &:focus,
+    &:active {
+      outline: 3px solid $color-blue-vivid;
+      offset: 0;
+      z-index: 1;
+    }
+  }
+}
+
+.iconTitle {
+  font-size: 16px;
+  color: $color-gray-darkest;
+  line-height: 24px;
+  text-align: center;
+  word-wrap: break-word;
+  padding-top: 12px;
+}
+
+.codeTitle {
+  margin: 12px 0;
+  font-weight: bold;
+}
+
+.codeContent {
+  margin-bottom: 12px;
+  margin-left: 24px;
+}
+
+.modalLink {
+  font-weight: 700 !important;
+}

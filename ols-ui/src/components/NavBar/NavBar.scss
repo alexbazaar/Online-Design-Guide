@@ -1,0 +1,78 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.outerWrapper {
+  height: auto;
+  flex-shrink: 0;
+}
+
+.nav {
+  z-index: $z-index-navbar;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin-bottom: 0;
+  background: $color-blue-dark;
+  color: $color-white;
+
+  @include media(md) {
+    margin-bottom: 0;
+  }
+}
+
+.navList {
+  @include unstyled-list;
+
+  .navItem a {
+    position: relative;
+    z-index: 2;
+  }
+
+  .navItem a.active {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.navItem {
+  display: inline-block;
+
+  a {
+    color: $color-white;
+    display: block;
+    font-weight: 400;
+    padding: 10px 20px;
+    color: inherit;
+    line-height: 24px;
+    text-decoration: none;
+
+    // Keep nav links the same color after visiting
+    &:visited {
+      text-decoration: none;
+      color: $color-white;
+    }
+
+    &:hover,
+    &:focus {
+      background: $color-gray-lighter;
+      color: $color-blue;
+    }
+
+    &.active,
+    &.active:hover {
+      background: $color-blue;
+      color: $color-white;
+    }
+
+    &:focus {
+      outline: 3px solid $color-blue-vivid;
+      outline-offset: 0;
+    }
+  }
+}
+
+[data-demo="pagination"] {
+  .outerWrapper{
+    height: 0 !important;
+  }
+}

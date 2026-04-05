@@ -1,0 +1,126 @@
+@import "~ols-ui/styles/variables";
+@import "~ols-ui/styles/mixins";
+
+$modalCloseIconWidth: 35px;
+$modalCloseIconHeight: 35px;
+
+.background {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right: 0;
+  background: #000000;
+  opacity: 0.54;
+}
+
+.modal {
+  position: relative;
+  color: $color-gray-darkest;
+  min-width: 350px;
+  max-width: 550px;
+  padding: $module-spacing * 2;
+  margin: ($module-spacing * 2) auto;
+  background-color: $color-white;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.20), 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12);
+  z-index: 1;
+  .button__wrapper {
+    margin-top: 32px;
+  }
+  .button__wrapper button {
+    margin-top: 0;
+  }
+
+  @include media-breakpoint-only(md) {
+    max-width: 90%;
+  }
+
+  @include media-breakpoint-down(sm) {
+    width: auto !important;
+    min-width: auto;
+    margin: $module-spacing;
+
+    .button__wrapper button {
+      display: block;
+      width: 100%;
+      margin-bottom: $module-spacing;
+    }
+    .button__wrapper button:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.modalTitlePreview {
+  font-size: 28px !important;
+}
+
+.modalTitle {
+  @include heading1;
+  padding-right: $module-spacing * 3;
+  padding-bottom: baselines(3);
+}
+
+.modalBody {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.closeButton {
+  @include button-unstyled;
+  position: absolute;
+  top: -($modalCloseIconHeight /2);
+  right: -($modalCloseIconWidth /2);
+  text-align: center;
+  color: $color-blue;
+
+  &:focus {
+    outline: 3px solid $color-blue-vivid;
+    outline-offset: 4px;
+  }
+
+  .closeButtonIcon {
+    border: none;
+    height: $modalCloseIconWidth;
+    width: $modalCloseIconHeight;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &:after {
+      content: "";
+      display: block;
+      background-color: $color-white;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      bottom: 2px;
+      right: 2px;
+      z-index: -1;
+    }
+
+    [data-component="icon-wrapper"] {
+      line-height: 0;
+    }
+
+    svg {
+      height: $modalCloseIconHeight;
+      width: $modalCloseIconHeight;
+    }
+  }
+}
+
+/* Override global button margin-top */
+:global [data-component="ModalContent"] .button__wrapper [data-component="Button"] {
+ margin-top: 0;
+}
+
+.modal-box-spec-table {
+  overflow-x: auto;
+}

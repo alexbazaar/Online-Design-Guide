@@ -1,0 +1,24 @@
+@import "../../styles/variables";
+
+.basicBadge {
+    width: 16px;
+    height: 16px;
+    border: 1px solid $color-white;
+    border-radius: 8px;
+    background-color: $color-red;
+    font-size: 12px;
+    line-height: 16px;
+    color: $color-white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 4px;
+}
+
+.basicBadge[data-component-size="double"] {
+    width: 22px;
+}
+
+.basicBadge[data-component-size="triple"] {
+    width: 28px;
+}

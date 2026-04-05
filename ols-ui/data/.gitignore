@@ -1,0 +1,4 @@
+# Adding this so the `data` folder is tracked in Git, but the output files aren't
+
+*
+!.gitignore

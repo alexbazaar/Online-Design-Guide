@@ -1,0 +1,677 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+
+// Header variables ---------- //
+$svg-width-lg: 106.29px;
+$svg-height-lg: 36px;
+
+$svg-width-sm: 83px;
+$svg-height-sm: 28px;
+
+$svg-width-xs: 65px;
+$svg-height-xs: 22px;
+
+$width-nav-sidebar: 220px;
+$searchwidth: 30px;
+$searchheight: $searchwidth;
+
+$margin-between-items: 20px;
+$header-height: 77px;
+
+// helper class
+.hiddenXS {
+  @include media-breakpoint-down(md) {
+    display: none !important;
+  }
+}
+.showXS {
+  @include media-breakpoint-up(sm) {
+    display: none !important;
+  }
+  @include media-breakpoint-down(md) {
+    display: block !important;
+  }
+}
+
+.srOnly {
+  @include sr-only;
+}
+
+
+.outerWrapper {
+  flex-shrink: 0;
+}
+
+// skipnav
+.skipnav {
+  position: absolute;
+  z-index: 100;
+  top: -130px;
+  left: 0;
+  padding: $module-spacing;
+  background: transparent;
+  color: $color-blue;
+  transition: all 0.2s ease-in-out;
+
+  &:focus , &:active{
+    top: 0;
+    left: 0;
+    background: $color-white;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+// Header ------------- //
+
+.header {
+  position: relative;
+  padding: 20px 0;
+  background: $color-blue;
+  color: $color-white;
+  font-family: $font-sans;
+  @include media-breakpoint-down(md) {
+    height: $header-height;
+  }
+}
+
+.logo {
+  position: relative;
+  top: 2px;
+  display: inline;
+  padding: 5px;
+  margin-left: -5px;
+  background: $color-blue;
+  color: $color-white !important;
+  font-size: 24px;
+  -webkit-font-smoothing: antialiased;
+  font-weight: $font-normal;
+  line-height: baselines(8);
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    color: $color-white !important;
+  }
+
+  &[data-component="Link"],
+  &[data-component="Link"]:hover,
+  &[data-component="Link"]:visited {
+    text-decoration: none;
+    color: $color-white;
+    svg path {
+      color: $color-white;
+      fill: $color-white;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    padding: 0;
+    margin: 0;
+  }
+
+  .logopng, svg {
+    width: $svg-width-lg;
+    height: $svg-height-lg;
+
+    @include media-breakpoint-down(md) {
+      width: $svg-width-sm;
+      height: $svg-height-sm;
+    }
+
+    @include media-breakpoint-down(xs) {
+      width: $svg-width-xs;
+      height: $svg-height-xs;
+    }
+  }
+
+  .title {
+    padding: 0 0 0 $module-spacing;
+    border-left: solid 1px rgba($color-white, 0.3);
+    margin-left: $module-spacing + 2px;
+    font-size: 24px;
+    line-height: $svg-height-lg;
+    text-decoration: none;
+
+    @include media-breakpoint-down(md) {
+      padding: 0 0 0 10px;
+      margin-left: 12px;
+      font-size: 22px;
+      line-height: $svg-height-sm;
+    }
+
+    @include media-breakpoint-down(xs) {
+      padding: 0 0 0 8px;
+      margin-left: 10px;
+      font-size: 17px;
+      line-height: $svg-height-xs;
+    }
+  }
+}
+
+
+.irs-header-logo-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  margin-top: -3px;
+}
+
+.version {
+  @include tiny;
+  margin-left: 1em;
+  opacity: 0.7;
+}
+
+.rightCol {
+  text-align: right;
+
+  @include media-breakpoint-down(md) {
+    text-align: left;
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: $color-white;
+    text-decoration: none;
+  }
+}
+
+.hamburger {
+  @include button-unstyled;
+  position: absolute;
+  top: -28px;
+  right: 0;
+  display: none;
+  padding: 0 10px;
+  border: solid 1px rgba($color-white, 0.3);
+  border-radius: $border-radius;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 26px;
+
+  @include media-breakpoint-down(md) {
+    display: inline-block;
+  }
+
+  @include media-breakpoint-down(xs) {
+    top: -26px;
+    right: 10px;
+  }
+}
+
+.hambugerIcon {
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 14px;
+
+  svg {
+    position: relative;
+    top: 2px;
+  }
+}
+
+.nav {
+  font-size: $font-size-base;
+  line-height: 1; // Keeps lines between items from being too tall
+  text-align: inherit; // Left if small; right if big
+  display: inline-block;
+}
+
+.navBody {
+  max-height: none;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  &.navBodyWithHamburger {
+    @include media-breakpoint-down(md) {
+      max-height: 0;
+      overflow-y: hidden;
+      transition-duration: 400ms;
+      transition-property: max-height;
+      transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    }
+  }
+
+  ul {
+    @include unstyled-list;
+
+    @include media-breakpoint-down(md) {
+      padding: 0;
+      line-height: $line-height-base;
+
+      .mobileButtonGroup {
+        display: block;
+      }
+    }
+  }
+
+  li {
+    font-weight: 300;
+    display: inline-block;
+
+    & {
+      padding: 0 10px;
+      border-right: solid 1px $color-white;
+    }
+
+    &:first-of-type {
+      border-right: solid 1px $color-white;
+
+      @include media-breakpoint-down(md) {
+        padding-left: 0;
+      }
+    }
+
+    & + [data-component="IRSHeaderNavGroup"],
+    &:last-of-type,
+    &:last-child {
+      border-right: none;
+      padding: 0 10px;
+    }
+
+    & + [data-component="IRSHeaderNavGroup"] {
+      position: relative;
+    }
+
+    a {
+      text-decoration: none;
+
+      &, &:hover {
+        color: $color-white;
+      }
+
+      &:hover, &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.headerNavButtonGroup {
+  display: inline-block;
+
+  .navBarButtonItem {
+    border: none;
+    padding: 0;
+  }
+
+  button {
+    @include button-unstyled;
+    border: none;
+    margin-right: $margin-between-items / 2;
+    background: $color-blue;
+    color: $color-white;
+    padding: 6px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-size: 12px;
+
+    &:last-child {
+      margin-right: $margin-between-items / 2;
+    }
+
+    &:hover, &:focus {
+      text-decoration: underline;
+      /* background-color: $color-blue-dark; */
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    & {
+      margin-bottom: 20px;
+    }
+
+    &,
+    button  {
+      display: block;
+    }
+    button {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Conditional spacing if has both headerNav and Button Group
+.nav + .headerNavButtonGroup {
+  margin-left: 20px;
+
+  @include media-breakpoint-down(md) {
+    margin-left: 0;
+  }
+}
+
+
+//Navbar
+.navBar {
+  &.visible {
+    @include media-breakpoint-down(md) {
+      display: block;
+      margin-bottom: $margin-between-items;
+      border-top: 1px solid transparentize($color-gray-darkest, 0.875);
+      nav {
+        padding-top: $margin-between-items + 10px;
+      }
+
+      [data-component="FlexContainer"], [data-component="FlexRow"], [data-component="FlexCol"] {
+        padding: 0;
+        margin: 0;
+        width: auto;
+      }
+
+      [data-component="NavBarItem"] a {
+        /* font-weight: 400; */
+        padding: 20px;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
+
+//Mobile
+.IRSHeaderContent {
+  background: $color-blue;
+  height: 100%;
+  min-height: $container-width-lg;
+
+  [data-component="FlexContainer"], [data-component="FlexRow"], [data-component="FlexCol"] {
+    padding: 0;
+    margin: 0;
+  }
+  [data-component="FlexRow"]:first-of-type,
+  [data-component="NavBar"] + [data-component="FlexRow"] {
+    padding: 0 20px;
+  }
+
+  [data-component="FlexRow"]:first-of-type  {
+    padding-bottom: $margin-between-items;
+    padding-top: $margin-between-items;
+    background: $color-blue-dark;
+  }
+
+  nav [data-component="FlexRow"]:first-of-type{
+    padding: 0;
+    padding-top: $margin-between-items;
+    background: $color-blue-dark;
+  }
+
+  [data-component="FlexRow"]:first-of-type > [data-component="FlexCol"]:first-of-type {
+    margin-bottom: $margin-between-items;
+  }
+
+  [data-component="NavBar"] + [data-component="FlexRow"] > [data-component="FlexCol"] {
+    margin-bottom: $margin-between-items;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.headerInner {
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+
+  &.visible {
+    @include media-breakpoint-down(md) {
+      display: block;
+    }
+  }
+}
+
+.mobile {
+  right: -1000px;
+  visibility: hidden;
+
+  &.visible-entered  {
+    right: 0;
+    visibility: visible;
+  }
+}
+
+.overlay {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(53,54,55, 0.875);
+  transition: all 1s ease-in-out;
+  opacity: 0;
+
+  .visible-entering  & {
+    opacity: 0;
+  }
+  .visible-entered  & {
+    opacity: 1;
+  }
+
+  &[data-modal-open="false"] {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+  }
+
+
+}
+
+.IRSHeaderMobileContainer {
+  background: $color-blue-dark;
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  right: 0;
+  width: 0;
+  max-width: $width-nav-sidebar * 2;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: all 1s ease-in-out;
+
+  @include media-breakpoint-down(xs) {
+    max-width: $width-nav-sidebar * 1.5;
+  }
+
+  .visible-entering  & {
+    width: 0;
+  }
+  .visible-entered  &{
+    width: 100%;
+  }
+
+  &[data-modal-open="false"] {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+  }
+
+  [data-component="NavBarItem"] {
+    display: block;
+  }
+}
+
+.hasBanner .overlay,
+.hasBanner .IRSHeaderMobileContainer {
+  top: 0;
+}
+
+.closeWrapper {
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}
+
+.mobileCloseButton {
+  @include button-unstyled;
+  background: $color-blue-dark;
+  display: block;
+  width: 100%;
+  padding: ($module-spacing * 1.5);
+  color: $color-white;
+  cursor: pointer;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  text-transform: uppercase;
+
+}
+
+
+//MenuButton
+.menuButton {
+  display: none;
+
+  @include media-breakpoint-down(md) {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .menuButtonInner {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  button {
+    @include button-unstyled;
+    background: $color-blue;
+    border:none;
+    color: $color-white;
+    line-height: 30px;
+    cursor: pointer;
+    font-size: $font-size-base;
+    text-transform: uppercase;
+    padding: 24px;
+    height: $header-height;
+
+    &.active {
+      background: $color-blue-darkest;
+    }
+  }
+
+}
+
+
+// SEARCH
+.navSearch [data-component="SearchField"] button[type=submit] {
+  width: $searchwidth;
+  height: $searchheight;
+}
+
+.navSearch [data-component="SearchField"] input[type=search] {
+  width: calc(100% - 30px);
+  height: 31px;
+}
+
+.navSearchOnly {
+  min-width: 200px;
+}
+
+// Restyles the Languages button's expandable IRSHeaderNavSubGroup list inside the IRSHeaderNavGroup
+// NAV LINKS GROUP/DROPDOWN
+.navBarGroup .trigger {
+  @include button-unstyled;
+  border: none;
+  background: transparent;
+  color: $color-white;
+  font-weight: 300;
+  font-size: 16px;
+  font: inherit;
+  padding: 0;
+  text-align: right;
+
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+.navBarGroup .trigger .iconWrapper,
+li.navBarGroup .trigger .iconWrapper {
+  display: inline-block;
+  vertical-align: middle;
+}
+.dropdownIcons {
+  width: 100%;
+  max-width: $font-size-base / 2;
+  padding-bottom: 3px;
+  margin-left: 5px;
+}
+
+ul.subMenu {
+  z-index: 11;
+  background-color: $color-gray-light;
+  border: 1px solid $color-gray-light;
+  font-size: 14px;
+  position: absolute;
+  max-height: 20rem;
+  margin: 0;
+  padding-left: 0;
+
+  &.closeSubMenu {
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: max-height .2s, visibility .2s .2s, opacity .2s .2s;
+  }
+
+  &.openSubMenu {
+    visibility: visible;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height .2s, visibility 0s, opacity 0s;
+  }
+
+
+  li {
+    display: block;
+    padding: 0;
+    text-align: left;
+    border: none;
+    background: $color-white;
+
+    &:last-child {
+      padding: 0;
+    }
+
+    .rightCol & a,
+    a {
+      color: $color-blue-darkest;
+      display: block;
+      padding: 10px;
+    }
+
+    & a:hover, & a:active, & a:focus {
+      font-weight: normal;
+      background-color: $color-blue;
+      color: $color-white;
+    }
+  }
+}
+
+// GLOBAL STYLES
+:global {
+  [data-component="IRSHeader"] [data-component="SearchField"] {
+    margin: 0;
+  }
+  // stylelint-disable selector-no-qualifying-type
+  body.modal__open {
+    overflow: hidden;
+  }
+}
+
+[data-component="IRSHeader"] > header > div:last-child [data-component="Link"] span {
+  font-weight: normal;
+  color: $color-white;
+}

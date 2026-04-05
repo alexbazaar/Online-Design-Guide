@@ -1,0 +1,217 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.iconOnly > span {
+  @include sr-only();
+}
+
+.textButton {
+  @include button;
+  background-color: transparent;
+  border: none;
+  border-color: transparent;
+  border-radius: 0;
+  color: $color-blue;
+
+  span,
+  svg {
+    pointer-events: none;
+  }
+
+  &.hover,
+  &:hover {
+    color: $color-blue-dark;
+  }
+
+  &.active,
+  &:active {
+    color: $color-blue-darkest;
+  }
+
+  // Ensures that the disabled style is consistent in different browsers
+  &:disabled,
+  &.hover:disabled,
+  &:hover:disabled {
+    background-color: transparent;
+    border-color: transparent;
+    color: $color-gray-dark;
+  }
+}
+
+.filledButton {
+  @include button;
+  background-color: $color-blue;
+  border: 2px solid $color-blue;
+  color: $color-white;
+  text-decoration: none;
+  text-transform: none;
+
+  &.visited,
+  &:visited {
+    color: $color-white;
+  }
+
+  &.hover,
+  &:hover {
+    background-color: $color-blue-dark;
+    border-color: $color-blue-dark;
+    color: $color-white;
+  }
+
+  &.active,
+  &:active {
+    background-color: $color-blue-darkest;
+    border-color: $color-blue-darkest;
+    color: $color-white;
+    border-width: 2px;
+  }
+
+  // Ensures that the disabled style is consistent in different browsers
+  &:disabled,
+  &.hover:disabled,
+  &:hover:disabled {
+    background-color: $color-gray-dark;
+    border: 2px solid $color-gray-dark;
+    color: $color-white;
+  }
+}
+
+.outlinedButton {
+  @include button;
+  background-color: $color-white;
+  color: $color-blue;
+  text-decoration: none;
+  border: 2px solid $color-blue;
+  text-transform: none;
+
+  &.visited,
+  &:visited {
+    color: $color-blue;
+  }
+
+  &.hover,
+  &:hover {
+    color: $color-blue-dark;
+    border-color: $color-blue-dark;
+  }
+
+  &.active,
+  &:active,
+  &.focus {
+    color: $color-blue-darkest;
+    background-color: transparent;
+    border-color: $color-blue-darkest;
+    border-width: 2px;
+  }
+
+  // Ensures that the disabled style is consistent in different browsers
+  &:disabled,
+  &.hover:disabled,
+  &:hover:disabled {
+    background-color: $color-white;
+    border: 2px solid $color-gray-dark;
+    color: $color-gray-dark;
+  }
+}
+
+// Common styles
+.filledButton,
+.outlinedButton {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-right: 16px;
+
+  span {
+    vertical-align: baseline;
+    margin-right: 0;
+  }
+
+  span,
+  svg {
+    pointer-events: none;
+    position: relative;
+  }
+
+  [data-component="icon-wrapper"] {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+  span + svg,
+  span + [data-component="icon-wrapper"] {
+    margin-left: 15px;
+  }
+
+  &.leading-icon [data-component="icon-wrapper"] {
+    margin-right: 15px;
+  }
+
+  svg + span {
+    margin-left: 16px;
+  }
+
+  svg {
+    position: relative;
+    top: 2px;
+    width: 14px;
+    height: 14px;
+  }
+
+  &.externalLink {
+    svg {
+      top: 0;
+      height: 12px;
+      width: 7px;
+    }
+
+    span + svg {
+      margin-left: 16px;
+    }
+  }
+}
+
+.filledButton:focus {
+  color: $color-white;
+}
+
+// Custom focus outline for Buttons
+.filledButton,
+.outlinedButton {
+  position: relative;
+  &:focus:not(.focus-visible) {
+    outline: none;
+  }
+}
+.filledButton:focus:not(.focus-visible):before,
+.outlinedButton:focus:not(.focus-visible):before {
+  box-sizing: border-box;
+  border: 3px solid $color-blue-vivid;
+  content: "";
+  display: block;
+  height: calc(100% + 18px);
+  width: calc(100% + 18px);
+  position: absolute;
+  top: -9px;
+  left: -9px;
+}
+
+a.filledButton[data-component="Button"] svg path,
+a.filledButton[data-component="Button"]:visited svg path,
+a.filledButton[data-component="Button"]:focus svg path,
+a.filledButton[data-component="Button"]:hover svg path,
+a.filledButton[data-component="Button"]:active,
+a.filledButton[data-component="Button"]:active svg path {
+  color: $color-white;
+  fill: $color-white;
+}
+
+a.outlinedButton[data-component="Button"] svg path,
+a.outlinedButton[data-component="Button"]:visited svg path,
+a.outlinedButton[data-component="Button"]:hover svg path,
+a.outlinedButton[data-component="Button"]:active svg path {
+  color: $color-blue;
+  fill: $color-blue;
+}
+

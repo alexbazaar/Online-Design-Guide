@@ -1,0 +1,229 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.card, .cardPhoto {
+  position: relative;
+  box-sizing: border-box;
+  border: solid 1px $color-gray;
+  margin-bottom: $module-spacing;
+  background: white;
+  font-family: $font-sans;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+
+  p {
+    margin-bottom: 16px;
+  }
+
+  button {
+    margin-bottom: 0;
+    margin-left: 0;
+    display: flex;
+  }
+
+  .link {
+    margin: 0 0 12px 0;
+    display: inline-block;
+    width: auto;
+  }
+
+  @include media-breakpoint-up(sm) {
+    overflow-x: auto;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  &.padding-normal {
+    padding: 16px $module-spacing 16px;
+  }
+
+  &.padding-medium {
+    padding: $module-spacing;
+
+    @include media-breakpoint-up(sm) {
+      padding: $module-spacing * 1.5;
+    }
+  }
+
+  &.padding-large,
+  &.padding-extra {
+    padding: $module-spacing;
+
+    @include media-breakpoint-up(sm) {
+      padding: $module-spacing * 2;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding: $module-spacing * 2.5;
+    }
+  }
+
+  &.border-less {
+    border: none;
+  }
+
+  &.secondary-style {
+    border-top: 1px solid $color-gray;
+  }
+
+  // The min-height classes set the minimum height of a Card
+  //
+  //
+
+  &.min-height-medium {
+    min-height: 300px;
+  }
+
+  &.min-height-large {
+    min-height: 480px;
+  }
+}
+
+.card, .cardPhoto {
+  border-top: 3px solid $color-gold;
+}
+
+.heading, h2 {
+  @include subtitle;
+  font-weight: bold;
+  line-height: 28px;
+  margin: 0;
+}
+
+.linksHeading {
+  @include subtitle;
+  margin: 15px 0 0 0;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+}
+
+.heading {
+  line-height: 28px;
+}
+
+.title {
+  padding-top: $module-spacing;
+  padding-right: $module-spacing;
+  padding-left: $module-spacing;
+}
+
+.imgInsetWrapper {
+
+  .imgInsetContainer {
+    max-height: 208px;
+    display: flex;
+    width: 100%;
+    background: $color-gray-lighter;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}
+
+.subheading {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 25px;
+  display: block;
+}
+
+@include media-breakpoint-up(md) {
+  .card, .cardPhoto {
+      width: 100%;
+  }
+
+  .cardContainer {
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 50%;
+    padding-right: 15px;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .card, .cardPhoto {
+      width: 100%;
+  }
+
+  .cardContainer {
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .card, .cardPhoto {
+      width: 100%;
+  }
+
+  .cardContainer {
+    padding-right: 0px;
+    width: 100%;
+  }
+}
+
+.card, .cardPhoto {
+  a {
+      margin-top: 0px !important; // overrides Link > a
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li a {
+      margin: 0;
+      display: inline-block;
+      width: auto;
+    }
+  }
+
+  ul li:not(:last-child) {
+    a {
+      margin: 0 0 12px 0 !important; // overrides Link > a
+    }
+  }
+}
+
+.card p + a, .cardPhoto p + a {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 5px 0;
+  width: auto;
+  display: inline-block;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.cardContainer {
+  [data-component="CardBody"] h3 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    font-style: italic;
+    margin-bottom: 0;
+    display: block;
+  }
+  
+  [data-component="CardBody"] h4 {
+    margin: 16px 0 12px 0;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 24px;
+  }
+
+  [data-component="CardBody"] p:first-of-type {
+    margin-top: 12px;
+  }
+}

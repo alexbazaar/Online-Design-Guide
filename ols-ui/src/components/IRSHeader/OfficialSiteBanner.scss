@@ -1,0 +1,64 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.banner {
+  background-color: $color-gray-lighter;
+}
+
+.bannerHeader {
+  padding: baselines(1) 0;
+  padding-left: 24px;
+  font-size: $font-size-tiny;
+  font-weight: $font-normal;
+  line-height: $line-height-tiny;
+
+  @include media-breakpoint-down(sm) {
+    padding: baselines(2) 0;
+    padding-left: 24px;
+  }
+
+  img {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 100%; // For stupid IE
+    max-width: 26px; // 🤞 that this keeps the proper width in IE
+    max-height: 20px;
+    margin-right: 8px;
+    object-fit: contain;
+
+    @include media-breakpoint-down(sm) {
+      top: 6px;
+    }
+  }
+
+  > span {
+    margin-right: 8px;
+  }
+}
+
+.headerButton {
+  @include button-unstyled;
+  position: relative;
+  display: inline;
+  padding-right: 20px;
+  background-position-x: right;
+  color: $color-blue;
+  cursor: pointer;
+  font-size: $font-size-tiny;
+  line-height: $line-height-tiny;
+  text-decoration: underline;
+
+  &:hover {
+    // color: $color-blue-dark;
+    text-decoration: underline;
+  }
+
+  .headerButtonIcon {
+    position: absolute;
+    top: -3px;
+    right: 0;
+    font-size: $font-size-base;
+    line-height: 1;
+  }
+}

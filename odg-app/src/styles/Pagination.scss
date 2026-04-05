@@ -1,0 +1,19 @@
+@import "~ols-ui/styles/variables";
+@import "~ols-ui/styles/mixins";
+
+.pagination-preview {
+  // Fix font zoom issue in iOS
+  * {
+    -webkit-text-size-adjust: auto;
+  }
+  zoom: 0.9;
+  @include media-breakpoint-down(lg) {
+    zoom: 0.65;
+  }
+  @include media-breakpoint-down(md) {
+    zoom: 0.47;
+  }
+  @include media-breakpoint-down(sm) {
+    zoom: 1;
+  }
+}

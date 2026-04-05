@@ -1,0 +1,210 @@
+@import "~ols-ui/styles/variables";
+@import "~ols-ui/styles/mixins";
+
+.icon-grid {
+  line-height: 0;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 193px 193px 193px 193px;
+  gap: 20px;
+  @include media-breakpoint-down(lg) {
+    grid-template-columns: 193px 193px 193px;
+  }
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 152px 152px;
+    gap: 16px;
+  }
+}
+
+.grid-icon {
+  width: 193px;
+  height: 193px;
+  display: inline-block;
+
+  @include media-breakpoint-down(md) {
+    width: 152px;
+    height: 152px;
+  }
+
+  [data-component="Colors"] {
+    width: 193px;
+    height: 193px;
+    display: inline-grid;
+    align-content: flex-end; 
+    justify-content: flex-start;
+    text-align: left;
+    padding: 16px 16px 16px 16px;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    font-family: $font-sans;
+
+    @include media-breakpoint-down(md) {
+      width: 152px;
+      height: 152px;
+    }
+
+    .copySquare,
+    .copiedSquare,
+    .copiedSquare:focus,
+    .copiedSquare:active {
+      display: none;
+    }
+
+    &:hover {
+      background-color: $color-blue-dark !important;
+      display: inline-grid;
+      justify-content: center;
+      align-content: center;
+      text-align: center;
+      cursor: pointer;
+
+      .copySquare svg {
+        display: block;
+        margin: auto;
+      }
+
+      .copySquare {
+        display: inline-grid !important;
+        color: $color-white;
+        text-align: center;
+      }
+
+      .originalSquare,
+      .copiedSquare {
+        display: none;
+      }
+    }
+    
+    &:focus-visible {
+      background-color: $color-blue-dark !important;
+      display: inline-grid;
+      justify-content: center;
+      align-content: center;
+      text-align: center;
+      cursor: pointer;
+      outline: 3px solid $color-blue-vivid;
+      outline-offset: -1px;
+
+      .copySquare svg {
+        display: block;
+        margin: auto;
+      }
+
+      .copySquare {
+        display: inline-grid !important;
+        color: $color-white;
+        text-align: center;
+      }
+
+      .originalSquare,
+      .copiedSquare {
+        display: none;
+      }
+    }
+
+    &:focus:not(:focus-visible), &[keyboardEnter="true"] {
+      outline: 3px solid $color-blue-vivid;
+      outline-offset: -1px;
+
+      .copiedSquare svg {
+        display: block;
+        margin: auto;
+      }
+
+      .originalSquare:hover,
+      .copySquare, .copySquare:hover {
+        display: none !important;
+      }
+
+      .copiedSquare {
+        display: inline-grid !important;
+        color: $color-white;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.colorTable {
+  thead {
+    background-color: $color-gray-lighter;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+
+  tr {
+    padding: 0px 0px 0px 8px;
+
+    th[data-component="TableHeaderCell"] {
+      border-bottom: none;
+    }
+
+    @include media-breakpoint-down(md) {
+      display: inline-block;
+      padding: 0px 0px 0px 0px;
+
+      &:first-child {
+        border-top: 1px solid $color-gray-light;
+        padding: 24px 0px 0px 0px !important;
+      }
+    }
+  }
+
+  td {
+    border-left: 0 !important;
+    border-right: 0 !important;
+    padding: 0px 0px 0px 16px;
+
+    @include media-breakpoint-down(md) {
+      padding: 0px 0px 0px 0px !important;
+       
+      &:not(:last-child) {
+        border-bottom-width: 0px;
+      }
+
+      &[data-th="Usage"] {
+        margin-bottom: 24px;
+        display: block;
+        border-top: none;
+      }
+    }
+  }
+
+  .changedColor {
+    width: 156px;
+    height: 156px;
+    display: inline-grid !important;
+    align-content: flex-end;
+    padding-left: 16px;
+    padding-bottom: 16px;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 24px 0px;
+
+    @include media-breakpoint-down(lg) {
+      margin: 24px 20px 24px 0px;
+      flex-direction: column;
+    }
+  }
+
+  .changedUsage {
+    display: inline-grid;
+    align-content: flex-end;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 24px 0px;
+  }
+
+  .mobileHeading {
+    display: none;
+
+    @include media-breakpoint-down(md) {
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: -18px;
+    }
+  }
+}

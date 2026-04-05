@@ -1,0 +1,19 @@
+@import "~ols-ui/styles/variables";
+@import "~ols-ui/styles/mixins";
+
+@import "./App";
+
+.colLinks {
+  display: block;
+
+  @include media-breakpoint-up(sm) {
+    display: inline-block;
+  }
+
+  &.colLeftIcon {
+
+    @include media-breakpoint-up(sm) {
+      margin-right: 60px;
+    }
+  }
+}

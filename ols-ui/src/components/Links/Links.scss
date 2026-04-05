@@ -1,0 +1,80 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.sr-only {
+  @include sr-only;
+}
+
+a:focus {
+  // outline: 3px solid $color-blue-vivid;
+  outline-offset: 0;
+}
+
+.link,
+.externalLink {
+  color: $color-blue;
+  text-decoration: underline;
+
+  /*
+    Need to add color to all forms of focused states
+    because irs-global defines a:focus as #002d62
+  */
+  &:focus {
+    outline: 3px solid $color-blue-vivid;
+    outline-offset: 0;
+    color: $color-blue;
+  }
+
+  &:active {
+    color: $color-blue-darkest;
+  }
+
+  &:visited {
+    color: $color-visited;
+  }
+
+  &:visited svg,
+  &:visited svg path {
+    color: $color-visited;
+    /* Safari needs fill on path */
+    fill: $color-visited;
+  }
+
+  &:hover {
+    color: $color-blue-dark;
+  }
+  &:hover svg path {
+    color: $color-blue-dark;
+    /* Safari needs fill on path */
+    fill: $color-blue-dark;
+  }
+
+  &:active:visited,
+  &:active:visited svg path {
+    color: $color-blue-darkest;
+    /* Safari needs fill on path */
+    fill: $color-blue-darkest;
+  }
+}
+
+.externalLink {
+  margin-right: 1px;
+  margin-left: 1px;
+  background: transparent !important;
+  padding: 0;
+
+  [data-icon="external-link-alt"] {
+    margin-left: 4px;
+  }
+}
+
+.externalLinkIcon {
+  margin-left: 4px;
+  height: 14px;
+  width: 14px;
+}
+
+.emailLinkIcon {
+  margin-left: 4px;
+  top: -2px !important;
+}

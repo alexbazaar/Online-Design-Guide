@@ -1,0 +1,74 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+$tabs-underline-width: 3px;
+
+.tabs {
+  margin-top: baselines(3);
+  margin-bottom: baselines(3);
+}
+
+.tabList {
+  border-bottom: solid 1px $color-gray-text;
+  margin-bottom: baselines(4);
+  border-bottom: solid 1px $color-gray;
+  min-width: fit-content;
+}
+
+.wrapper {
+  @include media-breakpoint-down(md) {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 4px;
+    min-width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
+.wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  @include button-unstyled;
+  margin-right: $module-spacing * 2;
+  color: $color-blue;
+  cursor: pointer;
+  font-size: $font-size-base;
+  line-height: 1;
+  text-transform: none;
+  margin-bottom: -1px;
+  padding: 12px 0;
+  
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  &:focus {
+    outline: 3px solid $color-blue-vivid;
+  }
+
+  &[aria-selected="true"], &[aria-selected="true"]:hover {
+    font-weight: $font-bold;
+    border-bottom: solid $tabs-underline-width $color-blue-dark;
+    color: $color-blue-dark;
+  }
+
+  &.disabled {
+    color: $color-gray-text;
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    font-size: $font-size-base;
+    font-weight: normal;
+    color: $color-blue-dark;
+  }
+}
+
+.tabPanel:focus {
+  outline: 3px solid $color-blue-vivid;
+  outline-offset: 0;
+}
+

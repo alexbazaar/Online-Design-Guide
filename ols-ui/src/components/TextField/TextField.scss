@@ -1,0 +1,70 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.input {
+  @include input-text;
+  border-radius: 0;
+
+  &.success {
+    padding: ($input-padding-vertical - 2px) 0.7em;
+    border: 1px solid $color-green;
+  }
+
+  &.error {
+    padding: ($input-padding-vertical - 2px) 0.7em;
+    border: 1px solid $color-red;
+  }
+
+  &:disabled {
+    background-color: $color-gray-light;
+    border-color: $color-gray;
+    color: $color-gray-text;
+    cursor: not-allowed;
+    -webkit-text-fill-color: $color-gray-text;  // Needed for Safari
+  }
+
+  &.medium {
+    max-width: $input-max-width / 2;
+  }
+
+  &.small {
+    max-width: $input-max-width / 4;
+  }
+
+  &.tiny {
+    max-width: $input-max-width / 8;
+  }
+}
+
+// HINT TEXT
+.hintText {
+  display: block;
+  color: $color-gray-text;
+  font-size: $font-size-base - 2px;
+  line-height: 20px;
+}
+
+.errorMessage {
+  display: block;
+  color: $color-red;
+  font-size: $font-size-base - 2px;
+  line-height: 20px;
+}
+
+.disabled {
+  color: $color-gray-text;
+  cursor: not-allowed;
+}
+
+.inline {
+  display: inline-block;
+  margin-right: $module-spacing;
+}
+
+// Custom focus outline for TextField
+.input:focus {
+  box-shadow: 0px 0px 0px 3px $color-blue-vivid;
+  border-radius: 0;
+  outline: none;
+  z-index: 1;
+}

@@ -1,0 +1,83 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.panel {
+  position: relative;
+  box-sizing: border-box;
+  border: solid 1px $color-gray;
+  margin-bottom: $module-spacing;
+  background: white;
+  font-family: $font-sans;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+
+  @include media-breakpoint-up(sm) {
+    overflow-x: auto;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  &.padding-normal {
+    padding: $module-spacing;
+  }
+
+  &.padding-medium {
+    padding: $module-spacing;
+
+    @include media-breakpoint-up(sm) {
+      padding: $module-spacing * 1.5;
+    }
+  }
+
+  &.padding-large,
+  &.padding-extra {
+    padding: $module-spacing;
+
+    @include media-breakpoint-up(sm) {
+      padding: $module-spacing * 2;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding: $module-spacing * 2.5;
+    }
+  }
+
+  &.border-less {
+    border: none;
+  }
+
+  // The min-height classes set the minimum height of a panel
+  //
+  //
+
+  &.min-height-medium {
+    min-height: 300px;
+  }
+
+  &.min-height-large {
+    min-height: 480px;
+  }
+}
+
+.heading, h2, h3 {
+  @include subtitle;
+  margin: 0;
+}
+
+.title,
+.paddedPanelTitle {
+  font-weight: bold;
+  margin-bottom: baselines(2);
+}
+
+.title {
+  padding-top: $module-spacing;
+  padding-right: $module-spacing;
+  padding-left: $module-spacing;
+}
+
+.paddedPanelTitle {
+  // PLACEHOLDER
+}

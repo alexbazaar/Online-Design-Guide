@@ -1,0 +1,27 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.checkList {
+  @include unstyled-list;
+  max-width: $type-max-width;
+  margin: baselines(6) 0;
+
+  @include media-breakpoint-up(sm) {
+    padding-left: $module-spacing * 1.5;
+  }
+
+  .checkListItem {
+    position: relative;
+    padding-left: $module-spacing * 1.5;
+    margin-bottom: baselines(3);
+    line-height: $line-height-base;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+}

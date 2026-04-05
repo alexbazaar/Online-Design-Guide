@@ -1,0 +1,233 @@
+#!/usr/bin/env bash
+echo ""
+echo "------------------------------------------------------------------------------"
+echo "This script updates the version of the ols-ui library, creates a tag with"
+echo "the new version number, and then syncs the changes to the"
+echo "component-library-production repo on GitLabs."
+echo ""
+echo "To proceed you must:"
+echo "  * Ensure this branch is clean"
+echo "  * Ensure all tests will pass"
+echo "  * Have write access to component-library and component-library-production"
+echo "  * Be totally ok having component-library-production match this branch"
+echo "  * Be totally ok adding new version tags in both repos"
+echo "------------------------------------------------------------------------------"
+echo ""
+
+read -p "Are you sure you want to proceed? [y/N]: " response
+response=${response:-n}
+
+echo ""
+
+if [[ "$response" == "y" ]] || [[ "$response" == "Y" ]]
+then
+  echo "OK, let's do this"
+  echo ""
+else
+  echo "🛑  Aborting ... Playing it safe, that's cool."
+  echo ""
+  exit 0
+
+fi
+
+
+
+#Ensure git repo is clean
+echo "🕵️‍‍   Making sure the repo is clean ..."
+
+if [ -z "$(git status --untracked-files=no --porcelain)" ]
+then
+  echo "👍  Repo is clean"
+else
+  echo "🛑  Aborting ... git repo is not clean. Check 'git status'." >&2
+  exit 1
+fi
+
+
+
+#Run tests
+echo "🕵️‍‍   Checking tests to keep you honest ..."
+yarn test
+
+#Check if tests passed
+if [ $? -eq 0 ]
+then
+  echo "👍  Tests passed"
+else
+  echo "🛑  Aborting ... tests failed" >&2
+  exit 1
+fi
+
+
+
+#Update the version
+echo ""
+echo "------------------------------------------------------------------------------"
+echo "Next you'll be asked to supply the version number, which must be a valid "
+echo "SemVer version (i.e. major.minor.patch)"
+echo ""
+echo "  * Increment major when you make a breaking or incompatible change to the"
+echo "    API of a package."
+echo "  * Increment minor when you add new functionality while staying "
+echo "    backwards-compatible"
+echo "  * Increment patch when you make bug fixes"
+echo "------------------------------------------------------------------------------"
+
+yarn version
+
+#Check if versioned
+if [ $? -eq 0 ]
+then
+  echo "👍  New version applied"
+else
+  echo "🛑  Aborting ... could not apply new version" >&2
+  exit 1
+fi
+
+# If NODE_ENV is not set, then set it to "production".
+if [ -z ${NODE_ENV} ]
+then
+  NODE_ENV=production
+fi
+
+
+
+# Remove the existing build folder
+echo "🗑   Cleaning build folder ..."
+rm -rf ./build
+
+#Check if clean passed
+if [ $? -eq 0 ]
+then
+  echo "👍  Cleaned build folder"
+else
+  echo "🛑  Aborting ... could not remove ./build" >&2
+  exit 1
+fi
+
+
+
+# Build the library.
+echo "🛠‍   Building a fresh library ..."
+./node_modules/.bin/webpack --config ./config/webpack.config.js $@
+
+#Check if library was built
+if [ $? -eq 0 ]
+then
+  echo "👍  Library built"
+else
+  echo "🛑  Aborting ... could not build library" >&2
+  exit 1
+fi
+
+
+
+# Create a temporary directory
+echo "⬇️   Fetching production library repo ..."
+
+TEMPDIR=`mktemp -d`
+REPODIR="$TEMPDIR/component-library-production"
+
+
+
+# Clone the production repo into the temp dir.
+pushd $TEMPDIR
+git clone git@git.irslabs.org:uxd/component-library-production.git
+
+if [ $? -eq 0 ]
+then
+  echo "👍  Production library repo cloned"
+else
+  echo "🛑  Aborting ... could not clone production library repo" >&2
+  exit 1
+fi
+popd
+
+
+
+# Copy package.json from 'dist' into the production repo.
+echo "🔄   Syncing library with production repo"
+cp package.json $REPODIR
+
+
+
+# Sync the dist folder to the repo folder.
+rsync -av --delete --exclude=".git" ./build/ $REPODIR
+if [ $? -eq 0 ]
+then
+  echo "👍  Production library synced"
+else
+  echo "🛑  Aborting ... rsync failed to copy files to destination" >&2
+  exit 1
+fi
+
+
+
+# Read the version number from the package.json file.
+pushd $REPODIR
+PACKAGE_VERSION=$(node -p "require('./package.json').version")
+
+
+
+# Commit the changes with a commit message including the new version number.
+echo "✍️  Committing changes to production library repo"
+git add .
+git commit -m "Release version $PACKAGE_VERSION"
+
+if [ $? -eq 0 ]
+then
+  echo "👍  Committed changes"
+else
+  echo "🛑  Aborting ... Failed to commit changes" >&2
+  exit 1
+fi
+
+
+
+# Tag the commit with the new version number.
+echo "🏷   Tagging commit as version" $PACKAGE_VERSION
+git tag $PACKAGE_VERSION
+
+if [ $? -eq 0 ]
+then
+  echo "👍  Tag added"
+else
+  echo "🛑  Aborting ... could not add tag" >&2
+  exit 1
+fi
+
+
+
+# Push the branch and tags to GitLab.
+echo "⬆️   Pushing changes to GitLab"
+git push && git push --tags
+
+if [ $? -eq 0 ]
+then
+  echo "👍  Changes pushed"
+else
+  echo "🛑  Aborting ... could not push changes" >&2
+  exit 1
+fi
+popd
+
+
+
+# Push the tag for the component-library repo so it matches the production repo
+git push && git push --tags
+
+
+
+# Remove the temp directory.
+echo "🗑   Cleaning temp directory"
+rm -rf $TEMPDIR
+
+if [ $? -eq 0 ]
+then
+  echo "👍  Temp directory cleaned"
+else
+  echo "🛑  Aborting ... could nremove temp directory" >&2
+  exit 1
+fi
+
+exit 0

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# If NODE_ENV is not set, then set it to "development".
+if [ -z ${NODE_ENV+development} ]; then
+  NODE_ENV=development
+fi
+
+echo "NODE_ENV=$NODE_ENV"
+
+# Remove the existing build folder if our environment is production.
+if [ "$NODE_ENV" == "production" ]; then
+  echo "Cleaning ./build"
+  rm -rf ./build
+fi
+
+# Build the library.
+./node_modules/.bin/webpack --config config/webpack.config.js $@

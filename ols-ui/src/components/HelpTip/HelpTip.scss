@@ -1,0 +1,134 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+@mixin help-tip-icon {
+  position: relative;
+  bottom: em(1px);
+  display: inline-block;
+  width: em(18px);
+  height: em(18px);
+  border: solid 1px $color-blue;
+  margin-left: 0.25em;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+  .srOnly, .hiddenText {
+  @include sr-only;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.link {
+  @include button-unstyled;
+  display: inline;
+  color: $color-gray-darkest;
+  font-size: $font-size-base;
+  line-height: inherit;
+}
+
+
+.helpTipButton {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 4px 0 0 8px;
+  border: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border-radius: 0;
+  color: $color-blue;
+  vertical-align: top;
+  cursor: pointer;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.helpTip {
+  font-size: $font-size-base;
+  position: relative;
+  padding: $module-spacing;
+  border: solid 1px $color-gray;
+  margin-top: $module-spacing - 5px;
+  background: $color-white;
+
+  p {
+    margin-bottom: $module-spacing - 4px;
+  }
+
+  p:last-child:first-child,
+  & > *:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+}
+
+.arrow {
+  position: absolute;
+  top: 0;
+  left: 2%;
+  margin-left: -2px;
+
+  &::after,
+  &::before {
+    position: absolute;
+    bottom: 100%;
+    left: attr(data-position px);
+    width: 0;
+    height: 0;
+    border: solid transparent;
+    border-color: rgba($color-gray, 0);
+    content: "";
+    pointer-events: none;
+  }
+
+  &::after {
+    margin-left: 1px;
+    border-bottom-color: $color-white;
+    border-width: 8px;
+  }
+
+  &::before {
+    margin-left: 0;
+    border-bottom-color: $color-gray;
+    border-width: 9px;
+  }
+}
+
+// Custom focus outline for Help Tip
+.helpTipButton {
+  position: relative;
+
+  &:hover {
+    color: $color-blue-dark;
+  }
+}
+
+.helpTipButton:focus {
+  outline: none;
+}
+
+.helpTipButton svg {
+  position: relative;
+}
+
+.helpTipButton:focus:before {
+  box-sizing: border-box;
+  border: 3px solid $color-blue-vivid;
+  content: "";
+  display: block;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  outline: none;
+  padding: 0px;
+}
+

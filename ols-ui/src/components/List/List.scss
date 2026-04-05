@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.ol {
+  list-style: decimal;
+}
+
+.ul,
+.ol {
+  padding-left: $module-spacing * 2;
+
+  > li {
+    margin-top: baselines(1);
+    margin-bottom: baselines(1);
+  }
+}

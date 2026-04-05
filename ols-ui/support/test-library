@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+
+const path = require("path");
+const jest = require('jest');
+// const shell = require('shelljs');
+
+// Comment the following to see verbose shell ouput.
+// shell.config.silent = false;
+process.env.BABEL_ENV = process.env.BABEL_ENV || 'test';
+
+const jestConfigBuilder = require(__dirname + "/test/jest-config");
+const srcPath = path.resolve(__dirname + "/..");
+const jestConfig = jestConfigBuilder(srcPath);
+
+// NOTE: `process.argv` includes the path to the node binary as the first element
+// and source file as the second argument. Any command line options will come
+// after that. Therefore we slice off the first two elements to only pass through
+// the command line arguments that the user specified.
+jest.run([ "--config", JSON.stringify(jestConfig), ...process.argv.slice(2) ]);

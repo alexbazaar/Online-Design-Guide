@@ -1,0 +1,15 @@
+@import "~ols-ui/styles/variables";
+
+[data-demo="pagination"] {
+  header,
+  nav,
+  footer {
+    display: none;
+    visibility: hidden;
+  }
+
+    .paginationTest {
+      display: flex !important;
+      visibility: inherit !important;
+    }
+}

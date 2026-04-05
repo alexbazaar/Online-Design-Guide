@@ -1,0 +1,133 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.backToTop {
+  @include button;
+  background-color: $color-white;
+  color: $color-blue;
+  text-decoration: none;
+  border: 2px solid $color-blue;
+  border-right: none;
+  height: 44px;
+  border-radius: 32px 0 0 32px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  transition: right 0.75s ease-in-out;
+  bottom: 80px;
+  z-index: 100;
+  padding-left: 32px;
+  cursor: pointer;
+
+  svg {
+    width: 15px;
+    height: 16px;
+    position: absolute;
+    top: 12px;
+    left: 8px;
+    z-index: 2;
+    color: $color-white;
+  }
+
+  &:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    background-color: $color-blue;
+    border-radius: 50%;
+    z-index: 1;
+    left: 4px;
+    margin-right: 16px;
+  }
+
+  &.relative {
+    position: relative;
+    top: 0;
+    right: 0;
+    transition: right 0.75s ease-in-out;
+    &.hidden {
+      right: 0;
+      transition: right 0.75s ease-in-out;
+    }
+  }
+
+  &.hover,
+  &:hover {
+    @include media-breakpoint-up(lg) {
+      color: $color-blue-dark;
+      border-color: $color-blue-dark;
+      svg g path:first-of-type {
+        fill: $color-blue-dark;
+      }
+    }
+  }
+
+  &.active,
+  &:active,
+  &.focus,
+  &:focus {
+    outline: none;
+  }
+
+  &.hidden {
+    right: -120px;
+    transition: 0.75s ease-in-out;
+  }
+
+  padding: 4px 16px 4px 4px;
+
+  span {
+    vertical-align: baseline;
+    margin-right: 0;
+    padding-left: 16px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  span,
+  svg {
+    pointer-events: none;
+    position: relative;
+  }
+
+  span + svg {
+    margin-left: 15px;
+  }
+
+  svg + span {
+    margin-left: 0px;
+  }
+
+  > svg {
+    position: relative;
+    width: 32px;
+    height: 32px;
+  }
+
+}
+
+// Custom focus outline for Back to Top
+.backToTop:focus {
+  outline: none;
+
+  &:before {
+    box-sizing: border-box;
+    border: 3px solid $color-blue-vivid;
+    content: "";
+    display: block;
+    height: calc(100% - -18px);
+    width: calc(100% - -18px);
+    position: absolute;
+    top: -9px !important;
+    left: -8px;
+    outline: none;
+    padding: 0px;
+  }
+}
+
+.backToTop svg {
+  position: relative;
+}

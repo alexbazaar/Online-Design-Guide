@@ -1,0 +1,474 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+$btn-width: 44px;
+$next-prev-button-height: 20px;
+$next-prev-button-width: 12px;
+
+$modalCloseIconWidth: 35px;
+$modalCloseIconHeight: 35px;
+
+.srOnly {
+  @include sr-only;
+}
+
+.overlay {
+  @include overlay;
+  background: transparent;
+  overflow: hidden;
+
+  @include media-breakpoint-down(xs) {
+    background: rgba(black, 0.5);
+  }
+}
+
+.labelText {
+  display: block;
+  max-width: $input-max-width;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+
+  &.disabled {
+    color: $color-gray-text;
+    cursor: not-allowed;
+    .required {
+      color: $color-gray-text;
+    }
+  }
+}
+
+// ERROR TEXT
+.errorMessage {
+  display: block;
+  margin: 12px 0;
+  color: $color-red;
+  font-size: $font-size-base - 2px;
+  line-height: 20px;
+  max-width: 12em;
+
+}
+
+.hintStyle {
+  display: block;
+  color: $color-gray-dark;
+  line-height: 20px;
+  font-size: 14px;
+  margin-bottom: 8px; // Adds 8px margin to hint text rather than using Spacer in the component itself
+}
+
+.input {
+  @include input-text;
+  color: $color-gray-darkest;
+  max-width: 8em; // Sets to 8em to get closer to width in design specs (about 206px wide)
+  border-color: $color-gray-darkest;
+  padding: $input-padding-vertical baselines(4);
+  display: inline-block;
+  box-sizing: border-box;
+  border-right: 1px solid $color-gray-darkest;
+  margin: 0;
+  border-radius: 0;
+  vertical-align: bottom;
+
+  &::-webkit-input-placeholder {
+    color: $color-gray-dark;
+  }
+
+  /* Firefox 4-18 */
+  &:-moz-placeholder {
+    color: $color-gray-dark;
+  }
+
+  /* Firefox 19-50 */
+  &::-moz-placeholder {
+    color: $color-gray-dark;
+  }
+
+  /* - Internet Explorer 10–11
+     - Internet Explorer Mobile 10-11 */
+  &:-ms-input-placeholder {
+    color: $color-gray-dark;
+  }
+
+  &.error {
+    padding: ($input-padding-vertical - 2px) 16px;
+    border: 1px solid $color-red; // Makes border thinner to match design
+  }
+
+  &:disabled {
+    background-color: $color-gray-light;
+    border-color: $color-gray;
+    color: $color-gray-text;
+    cursor: not-allowed;
+    -webkit-text-fill-color: $color-gray-text; // Needed for Safari
+  }
+  // IE potential fixes for mysterious X in field
+  &[type="text"]::-ms-clear {
+    width: 0;
+    height: 0;
+  }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  // IE10+ CSS here
+  .input {
+    max-width: 8.5em ;
+  }
+}
+
+.calendarLaunchBtn {
+  @include button;
+  font-size: 20px ;
+  display: inline-block;
+  width: 40px;
+  height: 46px;
+  padding: 0;
+  margin-right: 35px;
+  background-color: $color-white;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  color: $color-blue;
+  text-transform: none;
+  vertical-align: bottom;
+
+  svg[data-icon="calendar-days"] {
+    width: 18px;
+    height: 20px;
+    margin-top: -4px;
+  }
+
+  &:last-of-type {
+    margin-right: 16px; // Edits margin to match design specs
+    margin-left: 0; // Removes margin to match spacing in design specs
+  }
+
+  &:hover{
+    color: $color-blue-dark;
+  }
+
+  &:disabled,
+  &:hover:disabled {
+    margin-left: 0 ;
+    border-left: none;
+    background-color: $color-gray-light;
+    border-color: $color-gray;
+    color: $color-gray;
+    cursor: not-allowed;
+    -webkit-text-fill-color: $color-gray-text; // Needed for Safari
+  }
+}
+
+.calendarModal {
+  position: absolute;
+  z-index: $z-index-modal;
+  max-width: 385px;
+  padding: 50px 21px;
+  margin: 3px 0;
+  background-image: url("./calendarModal-left.svg");
+  background-repeat: no-repeat;
+  background-size: 385px;
+
+  &.calendarModalLg {
+    background-image: url("./calendarModalXL-left.svg");
+  }
+
+  @include media-breakpoint-down(xs) {
+    background-color: $color-white;
+    padding: 40px 15px 25px 15px;
+    position: fixed;
+    top: 25%;
+    left: 7%;
+    background-image: none;
+    max-width: 85%;
+
+
+    @include orientation(landscape) {
+      padding-top: 30px;
+      height: 330px;
+    }
+  }
+
+  @include media-breakpoint-down(xs) {
+    @include orientation(landscape) {
+      background-color: $color-white;
+      padding: 40px 15px 25px 15px;
+      position: fixed;
+      top: 26%;
+      left: 18%;
+      background-image: none;
+      max-width: 374px;
+
+    }
+  }
+}
+
+.calendarMonthGrid {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0.8em 0;
+  font-size: 16px;
+  table-layout: fixed;
+  text-align: center;
+
+  th {
+    width: 14.285714285714286%;
+    padding-bottom: 0.5em;
+    color: $color-gray-darkest;
+    font-weight: bold;
+    line-height: 24px;
+  }
+
+  td {
+    height: 38px;
+    border: none;
+    vertical-align: middle;
+  }
+  @include media-breakpoint-down(xs) {
+    th {
+      padding-bottom: 0.5em;
+    }
+    td {
+      height: 38px;
+    }
+  }
+  @include media-breakpoint-down(xs) {
+    @include orientation(landscape) {
+      th {
+        padding-bottom: 0.5em;
+      }
+      td {
+        height: 38px;
+      }
+    }
+  }
+}
+
+.calendarDayButton {
+  @include button-unstyled;
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  color: $color-gray-darkest;
+  cursor: pointer;
+  line-height: 24px;
+  text-align: center;
+  font-size: 16px;
+
+  // TODO: Make a circle button mixin
+  &:focus {
+    background-color: $color-blue;
+    color: $color-white;
+    font-weight: $font-bold;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+  }
+
+  &:hover {
+    width: 25px;
+    height: 25px;
+    background-color: $color-blue-dark;
+    border-radius: 50%;
+    color: $color-white;
+    font-weight: $font-bold;
+  }
+
+  &[aria-disabled="true"],
+  &:hover[aria-disabled="true"] {
+    background-color: transparent;
+    color: $color-gray;
+    cursor: not-allowed;
+    font-weight: $font-normal;
+    pointer-events: none;
+    -webkit-text-fill-color: $color-gray; // Needed for Safari
+  }
+}
+
+.gridTitle {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 18px;
+  position: relative;
+
+  @include media-breakpoint-down(sm) {
+      margin-bottom: 18px;
+
+  }
+  @include media-breakpoint-down(md) {
+    @include orientation(landscape) {
+      margin-bottom: 18px;
+    }
+  }
+}
+
+.gridTitleMonth {
+  margin: 0;
+  font-size: $font-size-heading3;
+  line-height: $line-height-heading4;
+  display: inline-block;
+}
+
+@mixin gridTitleButton {
+  @include button-unstyled;
+  color: $color-blue;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  top: calc(50% - (19px/2));
+  line-height: .5;
+
+  > span {
+    display: inline-block;
+  }
+
+  svg {
+    height: 19px;
+    width: 11px;
+  }
+
+  &:hover {
+    color: $color-blue-dark;
+  }
+}
+
+.gridTitleNextMonthButton {
+  @include gridTitleButton;
+  right: 39px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.gridTitleNextMonthButton:focus,
+.gridTitlePreviousMonthButton:focus {
+  outline: 3px solid $color-blue-vivid;
+  outline-offset: 4px;
+}
+
+.gridTitlePreviousMonthButton {
+  @include gridTitleButton;
+  left: 39px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.navIcon {
+  position: relative;
+  top: 1px;
+  width: 24px;
+  height: 24px;
+}
+
+.footer {
+  margin-top: $module-spacing / 2;
+  text-align: right;
+}
+
+.closeButton {
+  @include button-unstyled;
+  position: absolute;
+  top: -($modalCloseIconHeight /2);
+  right: -($modalCloseIconWidth /2);
+  text-align: center;
+  color: $color-blue;
+  line-height: 1;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    right: 1px;
+    background-color: white;
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  &:focus {
+    outline: 3px solid $color-blue-vivid;
+    outline-offset: 4px;
+  }
+
+  svg {
+    height: 35px;
+    width: 35px;
+  }
+  
+  .closeButtonIcon {
+    display: inline-block;
+  }
+}
+
+:global {
+  // stylelint-disable selector-no-qualifying-type
+  body.modal__open {
+    @include media-breakpoint-down(xs) {
+      overflow: hidden;
+      position: fixed;
+    }
+  }
+}
+
+// Custom focus outline for Date Field Input Fields
+[data-component="DateField"] input:focus {
+  box-sizing: border-box;
+  box-shadow: 0px 0px 0px 3px $color-blue-vivid;
+  border-radius: 0;
+  z-index: 2;
+
+  -webkit-background-clip: content-box;
+   -moz-background-clip: content-box;
+        background-clip: content-box;
+
+  &:not(.focus-visible) {
+    outline: none;
+  }
+}
+
+input,
+button {
+  position: relative;
+  outline: none;
+}
+
+.calendarLaunchBtn:focus {
+  outline: none;
+}
+
+.calendarLaunchBtn:focus svg {
+  outline: 3px solid $color-blue-vivid;
+  outline-offset: 4px;
+}
+
+input:required:invalid {
+  box-shadow: none;
+}
+
+input:required:invalid:focus {
+  box-shadow: 0px 0px 0px 3px $color-blue-vivid;
+}
+
+.calendarDayButton {
+  position: relative;
+}
+
+.calendarDayButton:focus {
+  outline: none;
+}
+
+.calendarDayButton:focus:after {
+  box-sizing: border-box;
+  border: 3px solid $color-blue-vivid;
+  content: "";
+  display: block;
+  height: 39px;
+  width: 39px;
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  outline: none;
+}

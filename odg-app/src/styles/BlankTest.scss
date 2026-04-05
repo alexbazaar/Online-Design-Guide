@@ -1,0 +1,8 @@
+
+.blankTest {
+    h1[data-component="pageTitle"] {
+        &:focus, &:focus-visible {
+            outline: none;
+        }
+    }
+}

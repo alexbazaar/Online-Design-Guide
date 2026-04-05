@@ -1,0 +1,234 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+$linkPadding: 10px 20px;
+$iconSize: 20px;
+$iconMarginRight: 8px;
+$animationSpeed: 300ms;
+$easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+$closedWidth: $iconSize + 24px;
+
+.srOnly {
+  @include sr-only();
+}
+
+.sidenav {
+  flex: 0 0 $width-nav-sidebar;
+
+  @include media-breakpoint-down(md) {
+    display: block;
+    margin-bottom: $module-spacing;
+  }
+}
+
+.sidenavList {
+  @include unstyled-list();
+
+  .sidenavSubList li[data-component="sidenavItem"] {
+    border-top: none;
+  }
+}
+
+[data-component="sidenavItem"] {
+  margin-top: -1px;
+
+  list-style: none;
+
+  a.sidebarLink {
+    border-top: 1px solid $color-gray;
+    border-bottom: 1px solid $color-gray;
+
+    &:focus {
+      outline: 3px solid $color-blue-vivid;
+      outline-offset: none;
+    }
+  }
+}
+
+[data-component="sidenavItem"]:first-of-type a:first-of-type {
+  border-top: 1px solid $color-gray;
+}
+
+a.sidebarLink {
+  display: block;
+  height: auto; 
+  padding: $linkPadding;
+  color: $color-gray-darkest;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  text-decoration: none;
+  position: relative;
+
+  span {
+    pointer-events: none;
+  }
+
+  // Make sure the color doesn't change after visiting the link
+  &:visited {
+    color: $color-gray-darkest;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: $color-gray-lighter;
+    color: $color-gray-darkest;
+    padding-left: $linkPadding + 3;
+  }
+
+  &:focus {
+    z-index: 1;
+  }
+
+  &.currentNavItem {
+    padding: $linkPadding;
+    font-weight: $font-bold;
+    ::before{
+      content: "";
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background-color: $color-blue-dark;
+      width: 3px;
+      display: block;
+      position: absolute;
+    }
+  }
+
+  &.withIcon svg {
+    display: inline-block;
+    width: $iconSize;
+    height: $iconSize;
+    margin-right: $iconMarginRight;
+  }
+}
+
+.sidenavSubList {
+  @include unstyled-list();
+  display: none;
+  width: 100%;
+  margin: 0;
+  background-color: $color-white;
+
+  .active ~ &,
+  .activeNavItem ~ &,
+  .inactiveNavItem ~ & {
+    display: block;
+  }
+
+  li {
+    font-weight: $font-normal;
+
+    a.sidebarLink {
+      font-size: 14px;
+      padding-left: 40px;
+    }
+
+    ul {
+      a.sidebarLink {
+        padding-left: 60px;
+      }
+    }
+  }
+}
+
+.groupLabel {
+  padding: 30px 12px 4px 12px;
+  font-size: $font-size-tiny;
+  font-weight: $font-bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.groupList {
+  li:last-of-type {
+    border-bottom: none;
+  }
+
+  .sidenavSubList li[data-component="sidenavItem"] {
+    border-top: none;
+  }
+
+}
+
+[data-component="DocsSection"] {
+  .groupList {
+    padding-left: 0px;
+  }
+
+  .sidenavList {
+    padding-bottom: 0px;
+  }
+
+  .sidenavSubList {
+    padding-left: 0px;
+  }
+}
+
+// Collapsible sidebar
+// ------------------------
+.collapsibleSidenav {
+  width: 30%;
+  max-width: $width-nav-sidebar;
+  margin-right: $grid-gutter-width-base;
+  float: left;
+  transition: width $animationSpeed $easeInOutQuad;
+
+  .sidebarLink {
+    display: flex;
+    overflow: hidden;
+    width: $width-nav-sidebar;
+    transition: width $animationSpeed $easeInOutQuad;
+
+    svg {
+      position: relative;
+      top: -2px;
+      width: $iconSize;
+      height: $iconSize;
+      flex: 0 0 $iconSize;
+      margin-right: $iconMarginRight;
+    }
+
+    span {
+      overflow: hidden;
+      height: baselines(6);
+      opacity: 1;
+      transition: opacity $animationSpeed $easeInOutQuad;
+    }
+  }
+
+  &.closed {
+    width: $closedWidth;
+    transition: width $animationSpeed $easeInOutQuad;
+
+    .sidebarLink {
+      width: $closedWidth;
+      transition: width $animationSpeed $easeInOutQuad;
+
+      span {
+        opacity: 0;
+        transition: opacity $animationSpeed $easeInOutQuad;
+      }
+    }
+  }
+}
+
+.collapseButton {
+  @include button-unstyled;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: baselines(8);
+  padding: $linkPadding;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: $color-white;
+  cursor: pointer;
+  text-align: right;
+
+  .buttonArrow {
+    position: relative;
+    top: 2px;
+    left: -5px;
+    width: 6px;
+    height: 12px;
+  }
+}

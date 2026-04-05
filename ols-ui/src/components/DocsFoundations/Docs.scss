@@ -1,0 +1,219 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+// DocsPage
+.docsPageHeader {
+  margin-bottom: baselines(12);
+
+  .docsPageTitle {
+    @include title;
+    margin-bottom: baselines(3);
+  }
+
+  .docsPageTitleContainer {
+    @include title;
+
+    @media screen and (min-width: $container-width-lg) {
+      display: flex;
+      align-items: center; 
+    }
+    .emphasisTagContainer {
+      display: flex;
+      @media screen and (max-width: $container-width-lg) {
+        > div {
+          margin-left: 0 !important;
+          margin-right: 16px !important;
+        }
+      }
+    } 
+
+  }
+
+  .docsPageSubtitle {
+    @include subtitle;
+  }
+}
+
+// DocsComponent
+.docsComponent {
+  padding-top: baselines(4);
+  border-top: solid 1px #aaaaaa;
+  margin-top: baselines(4);
+
+  .docsComponentTitle {
+    @include heading1;
+    color: $color-gray-text;
+    text-transform: capitalize;
+  }
+}
+
+// DocsSection
+.docsSection {
+  margin: baselines(12) 0;
+  //margin: 24px 0px;
+  
+  .docsSectionTitle {
+    @include heading3;
+    border-bottom: 1px solid $color-gray;
+    margin-top: 0;
+    margin-bottom: baselines(3);
+    color: $color-gray-darkest;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  .h3,
+  > h3 {
+    @include heading3;
+    @include heading3-margins;
+  }
+
+  .h4,
+  > h4 {
+    @include heading3;
+    @include heading3-margins;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  > p {
+    max-width: $type-max-width;
+    // max-width: 100%;
+    margin: baselines(3) 0;
+
+    &.bottomrule {
+      border-bottom: 1px solid $color-gray;
+    }
+  }
+
+  > ul {
+    @include ul;
+  }
+
+  > ol {
+    @include ol;
+  }
+
+  p code,
+  li code,
+  td code {
+    @include code;
+  }
+
+  .table,
+  > [data-component="Table"] {
+    margin-top: 0;
+    margin-bottom: baselines(6);
+
+    table {
+      @include caption;
+      border-collapse: collapse;
+
+      thead {
+        th {
+          @include caption-sizing;
+          border-top: solid 1px $color-gray;
+          border-right: solid 1px $color-gray;
+          border-bottom: none;
+          border-left: solid 1px $color-gray;
+          background: $color-gray-lighter;
+          font-weight: $font-bold !important;
+        }
+      }
+
+      tbody {
+        td,
+        th {
+          padding-top: baselines(3);
+          padding-bottom: baselines(3);
+          border: solid 1px $color-gray;
+        }
+
+        th {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
+
+// DocsPreview
+.docsPreview {
+  padding: 1em;
+  border: solid 15px #282c34;
+}
+
+// DocsCode
+.docsCode {
+  background: #282c34;
+  color: $color-gray-lighter;
+  font-family: $font-mono;
+  font-size: 14px;
+  line-height: 1.3;
+
+  pre {
+    padding: 1em;
+    white-space: pre-wrap;
+  }
+
+  @include media-breakpoint-down(md) {
+    font-size: 13px;
+  }
+}
+
+// DocsCodeUsage
+.docsCodeUsage {
+  padding: baselines(3) 0;
+  border-bottom: solid 1px $color-gray;
+  margin-bottom: baselines(3);
+  color: $color-blue-dark;
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+
+  pre {
+    padding: 1em;
+  }
+
+  @include media-breakpoint-down(md) {
+    font-size: 14px;
+  }
+}
+
+// DocsRequired
+
+.docsRequired {
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  padding: 0 6px;
+  margin-left: 0.75em;
+  background: $color-red;
+  border-radius: $border-radius;
+  color: $color-white;
+  font-size: 11px;
+  line-height: baselines(4);
+  text-align: center;
+  vertical-align: baseline;
+}
+
+// TestPage 
+
+.backButtonBox{
+  display: block;
+  // margin: 0 162px;
+}
+
+// <hr />
+
+.hr1 {
+  border: none!important;
+  background-color: #D6D7D9!important;
+  height: 1px!important;
+  margin: 46px 0px 24px 0px!important;
+ }

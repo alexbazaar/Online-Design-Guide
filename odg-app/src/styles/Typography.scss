@@ -1,0 +1,115 @@
+@import "~ols-ui/styles/variables";
+@import "~ols-ui/styles/mixins";
+
+.typeTable {
+  font-size: 14px;
+
+  thead th span {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    font-size: 14px;
+  }
+}
+
+.displayTypeTabView[data-component="Tabs"] {
+  margin-top: baselines(8);
+}
+
+.title {
+  @include title;
+}
+
+.subtitle {
+  @include subtitle;
+}
+
+.heading1 {
+  @include heading1;
+}
+
+.heading2 {
+  @include heading2;
+}
+
+.heading3 {
+  @include heading3;
+}
+
+.heading4 {
+  @include heading4;
+}
+
+.body {
+  @include body;
+}
+
+.caption {
+  @include caption;
+}
+
+.tiny {
+  @include tiny;
+}
+
+.hoverLink {
+  color: $color-blue-dark !important;
+}
+
+.activeLink {
+  color: $color-blue-darkest !important;
+}
+
+.visitedLink {
+  color: $color-visited !important;
+}
+
+.inputLabel {
+  @include body;
+}
+
+.inputText {
+  @include body;
+  line-height: 20px;
+}
+
+.placeholderText {
+  color: $color-gray-dark;
+  @include body;
+  line-height: 20px;
+}
+
+.hintText {
+  color: $color-gray-dark;
+  font-size: $font-size-base - 2px;
+  line-height: 20px;
+}
+
+.inputError {
+  color: $color-red;
+  font-size: $font-size-base - 2px;
+  line-height: 20px;
+  display: block;
+}
+
+.baselineExample {
+  width: 90%;
+}
+
+.sizesTable {
+  max-width: 20rem;
+}
+
+.highlightedRow td {
+  background: $color-yellow-lightest;
+}
+
+// Sets disclaimer class with tiny text size and top margin (i.e., System Alerts preview panel disclaimer)
+.disclaimer {
+  @include tiny;
+  max-width: none;
+  margin-top: $module-spacing;
+  display: inline-block;
+}

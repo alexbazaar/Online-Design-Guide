@@ -1,0 +1,83 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+$timeline-border-width: 2px;
+$timeline-knot-size: 13px;
+$timline-top-offset: 20px;
+$space-between-timeline-items: $module-spacing;
+
+.item {
+  display: flex;
+  align-items: stretch;
+  padding-bottom: $space-between-timeline-items;
+
+  &:last-of-type {
+    .line {
+      display: none;
+    }
+  }
+}
+
+.knotLine {
+  position: relative;
+  flex: 0 0 auto;
+  padding-left: $module-spacing;
+
+  .line {
+    position: absolute;
+    z-index: 0;
+    top: $timline-top-offset;
+    left: ($module-spacing) + ($timeline-knot-size / 2) - ($timeline-border-width / 2);
+    width: $timeline-border-width;
+    height: calc(100% + #{$space-between-timeline-items});
+    background-color: $color-gray;
+  }
+
+  .knot {
+    position: relative;
+    z-index: 1;
+    top: $timline-top-offset;
+    width: $timeline-knot-size;
+    height: $timeline-knot-size;
+    border: solid $timeline-border-width $color-gray;
+    background: $color-white;
+    border-radius: 50%;
+
+    &.gray {
+      background: $color-gray;
+      border-color: $color-gray;
+    }
+
+    &.blue {
+      background: $color-blue;
+      border-color: $color-blue;
+    }
+
+    &.red {
+      background: $color-red;
+      border-color: $color-red;
+    }
+
+    &.gold {
+      background: $color-yellow;
+      border-color: $color-yellow;
+    }
+
+    &.green {
+      background: $color-green;
+      border-color: $color-green;
+    }
+  }
+}
+
+.content {
+  padding-top: $module-spacing;
+  padding-right: $module-spacing;
+  padding-left: $module-spacing / 2;
+
+  > * {
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
