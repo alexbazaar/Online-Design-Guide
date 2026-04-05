@@ -1,0 +1,4 @@
+coverage
+**/*.test.js
+build
+node_modules

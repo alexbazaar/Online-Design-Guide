@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Make sure that we have a built version of ols-ui, then target it as a link.
+pushd ./ols-ui
+# Install dependencies.
+yarn install
+# If `build/package.json` doesn't already exist, then build the library
+# in development mode.
+if [ ! -f build/package.json ]; then
+  bash support/build-library
+fi
+# Set up the yarn link.
+cd build
+yarn link
+popd
+
+pushd ./odg-app
+# Link ols-ui in `odg-app`
+yarn link "ols-ui"
+# Install dependencies.
+yarn install
+popd
+
+pushd ./docs-app
+# Link ols-ui in `docs-app`
+yarn link "ols-ui"
+# Install dependencies.
+yarn install
+popd

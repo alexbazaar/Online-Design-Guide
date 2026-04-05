@@ -1,0 +1,53 @@
+{
+  "extends": ["stylelint-config-standard", stylelint-config-idiomatic-order],
+  "rules": {
+    # General / Sheet
+    "max-empty-lines": [2, { "ignore": ["comments"] }],
+    "max-line-length": 160,
+    "declaration-bang-space-before": null,
+    "declaration-empty-line-before": "never",
+    "at-rule-empty-line-before": null,
+    "no-descending-specificity": null,
+    # Strings
+    "string-quotes": "double",
+    "font-family-name-quotes": "always-where-recommended",
+    "function-url-quotes": "always",
+    "selector-attribute-quotes": "always",
+    # Numbers
+    "number-leading-zero": "always",
+    "number-no-trailing-zeros": true,
+    # Autoprefixer
+    "at-rule-no-vendor-prefix": true,
+    "media-feature-name-no-vendor-prefix": true,
+    "property-no-vendor-prefix": true,
+    "selector-no-vendor-prefix": true,
+    "value-no-vendor-prefix": true,
+    #At rule
+    "at-rule-no-unknown": null,
+    # Selectors and specificity
+    "max-nesting-depth": 4,
+    "selector-max-id": 0,
+    "selector-max-class": 4,
+    "selector-max-attribute": 4,
+    "selector-max-combinators": 4,
+    "selector-max-type": 4,
+    "selector-max-universal": 4,
+    "selector-no-qualifying-type": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["export", "import", "global", "local"]
+      }
+    ],
+    # Acceptable units, properties
+    "length-zero-no-unit": true,
+    "declaration-property-unit-blacklist":
+      {
+      "/^animation/": ["s"]
+      },
+    # Language limits
+    "color-hex-length": "long",
+    "color-hex-case": "lower",
+    "shorthand-property-no-redundant-values": null,
+  }
+}
