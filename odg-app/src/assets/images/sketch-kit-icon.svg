@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="102px" height="76px" viewBox="0 0 102 76" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>ODG-Sketch-Download</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M90.625,75.5 L9.375,75.5 C4.19726562,75.5 0,71.3027344 0,66.125 L0,9.875 C0,4.69726562 4.19726562,0.5 9.375,0.5 L90.625,0.5 C95.8027344,0.5 100,4.69726562 100,9.875 L100,66.125 C100,71.3027344 95.8027344,75.5 90.625,75.5 Z M21.875,11.4375 C15.834375,11.4375 10.9375,16.334375 10.9375,22.375 C10.9375,28.415625 15.834375,33.3125 21.875,33.3125 C27.915625,33.3125 32.8125,28.415625 32.8125,22.375 C32.8125,16.334375 27.915625,11.4375 21.875,11.4375 Z M12.5,63 L87.5,63 L87.5,41.125 L70.4072266,24.0322266 C69.4919922,23.1169922 68.0080078,23.1169922 67.0925781,24.0322266 L40.625,50.5 L29.7822266,39.6572266 C28.8669922,38.7419922 27.3830078,38.7419922 26.4675781,39.6572266 L12.5,53.625 L12.5,63 Z" id="path-1"></path>
+    </defs>
+    <g id="Designs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="IRS---ODG---Homepage---Option-3" transform="translate(-977.000000, -1179.000000)">
+            <g id="For-Developers" transform="translate(799.000000, 1106.000000)">
+                <g id="Group-4" transform="translate(144.000000, 73.000000)">
+                    <g id="z-misc-/-icons-/-image-solid" transform="translate(35.000000, 0.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="ODG-Sketch-Download" stroke="#00599C" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

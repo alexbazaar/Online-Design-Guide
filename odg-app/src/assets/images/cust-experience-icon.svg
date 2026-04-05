@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="66px" viewBox="0 0 74 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>CustomerExperience</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M69,2 L56,2 L56,-3 C56,-4.6625 54.6625,-6 53,-6 L19,-6 C17.3375,-6 16,-4.6625 16,-3 L16,2 L3,2 C1.3375,2 0,3.3375 0,5 L0,12 C0,16.4625 2.8125,21.05 7.7375,24.5875 C11.675,27.425 16.4625,29.225 21.4875,29.8 C25.4125,36.3125 30,39 30,39 L30,48 L24,48 C19.5875,48 16,50.5875 16,55 L16,56.5 C16,57.325 16.675,58 17.5,58 L54.5,58 C55.325,58 56,57.325 56,56.5 L56,55 C56,50.5875 52.4125,48 48,48 L42,48 L42,39 C42,39 46.5875,36.3125 50.5125,29.8 C55.55,29.225 60.3375,27.425 64.2625,24.5875 C69.175,21.05 72,16.4625 72,12 L72,5 C72,3.3375 70.6625,2 69,2 Z M12.5844156,18.2691415 C9.41558442,16.0232019 8,13.5220418 8,12.0417633 L8,10 L16.3376623,10 C16.4675325,14.1600928 17.0909091,17.8097448 18,21 C16.038961,20.3364269 14.2077922,19.4176334 12.5844156,18.2691415 L12.5844156,18.2691415 Z M64,12.0417633 C64,14.0962877 61.7042802,16.6484919 59.4215305,18.2691415 C57.8002594,19.4176334 55.9584955,20.3364269 54,21 C54.9079118,17.8097448 55.5304799,14.1600928 55.6601816,10 L64,10 L64,12.0417633 Z" id="path-1"></path>
+    </defs>
+    <g id="Designs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="IRS---ODG---Homepage---Option-3" transform="translate(-222.000000, -764.000000)">
+            <g id="Mid-Section" transform="translate(223.000000, 705.000000)">
+                <g id="Mid-Boxes" transform="translate(0.000000, 60.000000)">
+                    <g id="z-misc-/-icons-/-trophy-solid" transform="translate(0.000000, 6.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="CustomerExperience" stroke="#C7A97B" fill="#C7A97B" fill-opacity="0.1" fill-rule="nonzero" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

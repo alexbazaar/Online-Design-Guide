@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>Arrow_Right_Orange</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M8.87763642,3.84440104 L9.62085705,3.12174479 C9.93555407,2.81575521 10.4444258,2.81575521 10.755775,3.12174479 L17.2639772,9.44661458 C17.5786743,9.75260417 17.5786743,10.2473958 17.2639772,10.5501302 L10.755775,16.8782552 C10.441078,17.1842448 9.93220623,17.1842448 9.62085705,16.8782552 L8.87763642,16.155599 C8.55959156,15.8463542 8.56628724,15.3417969 8.89102779,15.0390625 L12.9251758,11.3020833 L3.30348175,11.3020833 C2.85821895,11.3020833 2.5,10.953776 2.5,10.5208333 L2.5,9.47916667 C2.5,9.04622396 2.85821895,8.69791667 3.30348175,8.69791667 L12.9251758,8.69791667 L8.89102779,4.9609375 C8.5629394,4.65820312 8.55624372,4.15364583 8.87763642,3.84440104 Z" id="path-1"></path>
+    </defs>
+    <g id="Designs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="IRS---ODG---Homepage---Option-3" transform="translate(-327.000000, -819.000000)">
+            <g id="Mid-Section" transform="translate(223.000000, 705.000000)">
+                <g id="Mid-Boxes" transform="translate(0.000000, 60.000000)">
+                    <g id="Design-Language" transform="translate(2.000000, 0.000000)">
+                        <g id="actions-/-arrow-/-right-solid" transform="translate(100.000000, 52.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="arrow-right-solid" fill="#C7A97B" fill-rule="nonzero" xlink:href="#path-1"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
