@@ -1,1 +1,42 @@
+name: Deploy to GitHub Pages
 
+on:
+  push:
+    branches:
+      - main   # Change to 'master' if your default branch is named master
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: odg-app/package-lock.json
+
+      - name: Install odg-app dependencies
+        working-directory: odg-app
+        run: npm install --legacy-peer-deps
+
+      - name: Build for production
+        working-directory: odg-app
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./odg-app/dist
+          # Prevents Jekyll from processing the output (important for React apps)
+          enable_jekyll: false
