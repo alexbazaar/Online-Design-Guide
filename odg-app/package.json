@@ -1,0 +1,43 @@
+{
+  "name": "uxd-online-style-guide",
+  "version": "4.3.1",
+  "description": "IRS Online Design Guide — static build for GitHub Pages",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vite build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
+    "cleave.js": "^1.6.0",
+    "fbjs": "^3.0.5",
+    "heredocument": "^2.0.2",
+    "highlight.js": "^11.11.1",
+    "moment": "^2.29.1",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "react-helmet": "^6.1.0",
+    "react-redux": "^7.2.6",
+    "react-router": "^5.3.4",
+    "react-router-dom": "^5.3.4",
+    "react-transition-group": "^4.4.5",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
+    "tabbable": "^5.2.1",
+    "zxcvbn": "^4.4.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.3.0",
+    "sass": "^1.79.0",
+    "vite": "^5.4.0"
+  }
+}
